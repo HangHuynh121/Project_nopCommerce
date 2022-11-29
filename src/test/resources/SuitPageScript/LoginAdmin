@@ -1,0 +1,41 @@
+
+1. Chạy parallel Suit.test - test.menthod
+
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="LoginAdmin" verbose="1"  parallel="tests">
+
+
+    <test name="Login_Chrome"  parallel="methods">
+        <parameter name="browser" value="chrome"></parameter>
+        <classes>
+            <class name="HangTester.nopCommerce.RunTest.LoginAdminTest" >
+                <methods>
+                    <include name="LoginValid" />
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="Login_Firefox"  parallel="methods">
+        <parameter name="browser" value="firefox"></parameter>
+        <classes>
+            <class name="HangTester.nopCommerce.RunTest.LoginAdminTest" >
+                <methods>
+                    <include name="LoginValid" />
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="Login_Edge"  parallel="methods">
+        <parameter name="browser" value="edge"></parameter>
+        <classes>
+            <class name="HangTester.nopCommerce.RunTest.LoginAdminTest" >
+                <methods>
+                    <include name="LoginValid" />
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+</suite>
