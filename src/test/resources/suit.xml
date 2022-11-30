@@ -1,7 +1,6 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
 <suite name="LoginAdmin" verbose="1" parallel="tests">
-
-
 
     <test name="Manufacturers_Chrome"  >
         <parameter name="browser" value="chrome"></parameter>
