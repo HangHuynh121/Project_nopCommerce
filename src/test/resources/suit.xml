@@ -1,39 +1,14 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="LoginAdmin" verbose="1" parallel="tests">
+<suite name="LoginAdmin" verbose="1" >
 
     <test name="Manufacturers_Chrome"  >
         <parameter name="browser" value="chrome"></parameter>
         <classes>
-            <class name="HangTester.nopCommerce.RunTest.LoginAdminTest" >
+            <class name="HangTester.nopCommerce.RunTest.CategoriesTest" >
                 <methods>
-                    <include name="LoginValid" />
 
-                </methods>
-            </class>
-        </classes>
-    </test>
-
-
-    <test name="Manufacturers_edge"  >
-        <parameter name="browser" value="edge"></parameter>
-        <classes>
-            <class name="HangTester.nopCommerce.RunTest.LoginAdminTest" >
-                <methods>
-                    <include name="LoginValid" />
-
-                </methods>
-            </class>
-        </classes>
-    </test>
-
-
-    <test name="Manufacturers_firefox"  >
-        <parameter name="browser" value="firefox"></parameter>
-        <classes>
-            <class name="HangTester.nopCommerce.RunTest.LoginAdminTest" >
-                <methods>
-                    <include name="LoginValid" />
+                    <include name="addNew" />
 
                 </methods>
             </class>
