@@ -51,6 +51,10 @@ public class WebUI {
 
     }
 
+//    public static String getAttribute(String attri){
+//        WebElement element = DriverManager.getDriver().findElement(By.class(attri));
+//    }
+
     public static  void moveToElemet(By by){
         waitForElementVisible(by);
         WebElement element = DriverManager.getDriver().findElement(by);

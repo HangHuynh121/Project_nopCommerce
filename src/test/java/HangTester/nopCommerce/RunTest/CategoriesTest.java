@@ -30,5 +30,7 @@ public class CategoriesTest extends BaseTest {
     }
 
     @Test (priority = 3)
-    public void  delNew(){}
+    public void  delNew(){
+        categoriesPage.delCategory();
+    }
 }

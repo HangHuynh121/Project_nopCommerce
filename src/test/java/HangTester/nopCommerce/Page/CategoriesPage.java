@@ -18,7 +18,7 @@ public class CategoriesPage {
     private By nameAddPage = By.xpath("//h1[contains(.,'Add a new category')]");
     private By nameAdd = By.xpath("//input[@id='Name']");
     private By description = By.xpath("//iframe[@id='Description_ifr']");
-    private By DisplayItem = By.xpath("//div[@id='category-display']//div[@class='card-header with-border clearfix']//div[1]");
+    private By DisplayItem = By.xpath("//div[@id='category-display']");
     private By PriceFrom = By.xpath("//div[@id='nestedSetting1126636056']/div[1]/div[2]/span/span/input");
     private By PriceTo = By.xpath("//input[@id='PriceTo']");
     private By saveAddButton = By.xpath("//button[@name='save']");
@@ -30,12 +30,13 @@ public class CategoriesPage {
         WebUI.VerifyTextSoft(nameAddPage,"Add a new category back to category list");
         WebUI.sendText(nameAdd,Name);
         WebUI.sendText(description, des);
-        WebUI.clickElement(DisplayItem);
-        WebUI.moveToElemet(PriceFrom);
-        WebUI.clearText(PriceFrom);
-        WebUI.sendText(PriceFrom,"100");
-        WebUI.clearText(PriceTo);
-        WebUI.sendText(PriceTo,"1000");
+
+//        WebUI.clickElement(DisplayItem);
+//        WebUI.moveToElemet(PriceFrom);
+//        WebUI.clearText(PriceFrom);
+//        WebUI.sendText(PriceFrom,"100");
+//        WebUI.clearText(PriceTo);
+//        WebUI.sendText(PriceTo,"1000");
         WebUI.clickElement(saveAddButton);
         WebUI.sleep(1);
         WebUI.moveToElemet(nameNewCategory);
@@ -67,8 +68,21 @@ public class CategoriesPage {
     }
 
     //DELETE NEW
-    public void delCategory(){
+    private By Delete = By.xpath("//button[@id='delete-selected']");
+    private By Checkbox = By.xpath("//div[@class='dataTables_scroll']/div[2]//tbody/tr[1]/td[1]/input");
+    private By YesButton = By.xpath("//button[@id='delete-selected-action-confirmation-submit-button']");
 
+    public void delCategory(){
+        WebUI.openURL("https://admin-demo.nopcommerce.com/Admin/Category/List");
+        WebUI.moveToElemet(nameNewCategory); //DeleteManufacture vừa add
+        String getname = WebUI.getText(nameNewCategory);
+        WebUI.clickElement(Checkbox);
+        WebUI.sleep(1);
+        WebUI.moveToElemet(Delete);
+        WebUI.sleep(1);
+        WebUI.clickElement(Delete);
+        WebUI.clickElement(YesButton);
+        WebUI.VerifyTextSoftNotEqual(nameNewCategory, getname);
     }
 
 }
