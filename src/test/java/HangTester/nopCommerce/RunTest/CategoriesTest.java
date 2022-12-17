@@ -20,7 +20,9 @@ public class CategoriesTest extends BaseTest {
 
     @Test (priority =  1)
     public void addNew(){
-        categoriesPage.AddCategory("Furniture","Table");
+        categoriesPage.CategoryInfo("Furniture","Table",  "Computers");
+        categoriesPage.CatgoryDisplay("100", "1000");
+        categoriesPage.Mapping("Administrators", "Your store name");
     }
 
     @Test (priority = 2)

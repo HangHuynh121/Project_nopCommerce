@@ -1,13 +1,13 @@
 package HangTester.utils.helper;
 
 import HangTester.browsers.DriverManager;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.IClass;
 import org.testng.asserts.SoftAssert;
-import org.openqa.selenium.JavascriptExecutor;
 
 import java.time.Duration;
 
@@ -35,6 +35,21 @@ public class WebUI {
 
     }
 
+    public static void clickJS(By by){
+        waitForElementVisible(by);
+        sleep(step_time);
+        JavascriptExecutor js = (JavascriptExecutor) DriverManager.getDriver();
+        js.executeScript("arguments[0].click();", DriverManager.getDriver().findElement(by));
+        Log("Click on: " + by);
+    }
+
+    public static void ENTER(By by){
+        Actions act = new Actions(DriverManager.getDriver());
+        act.keyDown(Keys.ENTER).keyUp(Keys.ENTER).build().perform();
+        sleep(step_time);
+        Log("Clear text on: " + by );
+    }
+
     public static void sendText( By by, String text){
         waitForElementVisible(by);
         sleep(step_time);
@@ -51,9 +66,31 @@ public class WebUI {
 
     }
 
-//    public static String getAttribute(String attri){
-//        WebElement element = DriverManager.getDriver().findElement(By.class(attri));
-//    }
+    public static void OpenHideItem(String property1, String property2, String SttHide, By Item){
+        WebElement element = DriverManager.getDriver().findElement(By.id(property1));
+        String stt = element.getAttribute(property2);
+        if (stt.equals(SttHide)){
+            WebUI.clickElement(Item);
+        }
+        Log("Open hide Item: " + Item);
+    }
+
+    public static void checkCheckbox(String checkboxID){
+        WebElement element = DriverManager.getDriver().findElement(By.id(checkboxID));
+        Boolean isSelect = element.isSelected();
+        if(isSelect == false){element.click();}
+        sleep(0.5);
+        Log("Check the checkbox: " + checkboxID);
+
+    }
+
+    public static  void selectDopdown(String ID, String value){
+        Select select = new Select(DriverManager.getDriver().findElement(By.id(ID)));
+        select.selectByVisibleText(value);
+        sleep(step_time);
+        Log("Select Dropdown: " + ID);
+
+    }
 
     public static  void moveToElemet(By by){
         waitForElementVisible(by);
@@ -66,12 +103,11 @@ public class WebUI {
     }
 
     public static void clearText(By by){
-
-        waitForElementVisible(by);
+        Actions act = new Actions(DriverManager.getDriver());
+        act.keyDown(Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL).build().perform();
+        act.keyDown(Keys.BACK_SPACE).keyUp(Keys.BACK_SPACE).build().perform();
         sleep(step_time);
-        DriverManager.getDriver().findElement(by).clear();
-        Log("Clear text on: " + by + "before input new text");
-
+        Log("Clear text on: " + by );
     }
 
     public static void VerifyTextSoft(  By by, String exp){
@@ -103,7 +139,7 @@ public class WebUI {
     }
 
 
-    private static int timeout = 10;
+    private static int timeout = 5;
     public static void waitForElementToClick( By by){
         WebDriverWait wait = new WebDriverWait(DriverManager.getDriver(),Duration.ofSeconds(timeout));
         wait.until(ExpectedConditions.elementToBeClickable(by));
@@ -114,7 +150,7 @@ public class WebUI {
         wait.until(ExpectedConditions.visibilityOfElementLocated(by));
     }
 
-    private static double step_time = 1;
+    private static double step_time = 0.3;
     public static void sleep(double seconds){
         try{
             Thread.sleep((long) (1000 *seconds));

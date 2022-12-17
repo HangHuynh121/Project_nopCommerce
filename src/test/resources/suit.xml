@@ -8,8 +8,6 @@
             <class name="HangTester.nopCommerce.RunTest.CategoriesTest" >
                 <methods>
                     <include name="addNew" />
-                    <include name="editNew" />
-                    <include name="delNew" />
                 </methods>
             </class>
         </classes>
