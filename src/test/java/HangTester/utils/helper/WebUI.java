@@ -66,13 +66,13 @@ public class WebUI {
 
     }
 
-    public static void OpenHideItem(String property1, String property2, String SttHide, By Item){
-        WebElement element = DriverManager.getDriver().findElement(By.id(property1));
-        String stt = element.getAttribute(property2);
+    public static void OpenHideItem(By by, String property, String SttHide){
+        WebElement element = DriverManager.getDriver().findElement(by);
+        String stt = element.getAttribute(property);
         if (stt.equals(SttHide)){
-            WebUI.clickElement(Item);
+            WebUI.clickElement(by);
         }
-        Log("Open hide Item: " + Item);
+        Log("Open hide Item: " + by);
     }
 
     public static void checkCheckbox(String checkboxID){
@@ -139,7 +139,7 @@ public class WebUI {
     }
 
 
-    private static int timeout = 5;
+    private static int timeout = 10;
     public static void waitForElementToClick( By by){
         WebDriverWait wait = new WebDriverWait(DriverManager.getDriver(),Duration.ofSeconds(timeout));
         wait.until(ExpectedConditions.elementToBeClickable(by));

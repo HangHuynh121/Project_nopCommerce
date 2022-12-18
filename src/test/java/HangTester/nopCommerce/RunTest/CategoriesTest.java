@@ -23,16 +23,17 @@ public class CategoriesTest extends BaseTest {
         categoriesPage.CategoryInfo("Furniture","Table",  "Computers");
         categoriesPage.CatgoryDisplay("100", "1000");
         categoriesPage.Mapping("Administrators", "Your store name");
+        categoriesPage.SEO("home","normal", "4", "Computers", "Furniture");
     }
 
     @Test (priority = 2)
     public  void editNew(){
-        categoriesPage.editCategory("School","Chair");
+        categoriesPage.editCategory("Furniture","School","Chair","Computers");
 
     }
 
     @Test (priority = 3)
     public void  delNew(){
-        categoriesPage.delCategory();
+        categoriesPage.delCategory("School");
     }
 }
