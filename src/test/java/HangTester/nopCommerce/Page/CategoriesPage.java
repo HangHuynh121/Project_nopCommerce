@@ -119,7 +119,7 @@ public class CategoriesPage {
         WebElement element = DriverManager.getDriver().findElement(SearchItem);
         String stt = element.getAttribute("class");
         System.out.println("Stt: " + stt);
-        WebUI.clickElement(By.xpath("//i[@class='far fa-angle-down']"));
+        WebUI.clickElement(SearchItem);
 //        if (stt.equals("row search-row")){
 //            System.out.println("SearchHide" + SearchHide);
 //            WebUI.clickElement(By.xpath("//i[@class='far fa-angle-down']"));
