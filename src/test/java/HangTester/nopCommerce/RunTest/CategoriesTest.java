@@ -18,7 +18,7 @@ public class CategoriesTest extends BaseTest {
         loginAdminPage.Login("","");
     }
 
-    @Test (priority =  1)
+    @Test
     public void addNew(){
         categoriesPage.CategoryInfo("Furniture","Table",  "Computers");
         categoriesPage.CatgoryDisplay("100", "1000");
@@ -26,13 +26,13 @@ public class CategoriesTest extends BaseTest {
         categoriesPage.SEO("home","normal", "4", "Computers", "Furniture");
     }
 
-    @Test (priority = 2)
+    @Test
     public  void editNew(){
         categoriesPage.editCategory("Furniture","School","Chair","Computers");
 
     }
 
-    @Test (priority = 3)
+    @Test
     public void  delNew(){
         categoriesPage.delCategory("School");
     }

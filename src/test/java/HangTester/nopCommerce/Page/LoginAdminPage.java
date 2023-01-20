@@ -1,8 +1,7 @@
 package HangTester.nopCommerce.Page;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import HangTester.utils.helper.WebUI;
+import org.openqa.selenium.By;
 
 public class LoginAdminPage {
 
@@ -23,7 +22,7 @@ public class LoginAdminPage {
     public  String nameAdminPageExp = "Dashboard";
     public void Login(String mail, String pass){
         WebUI.openURL("https://admin-demo.nopcommerce.com/login?ReturnUrl=%2Fadmin%2F");
-        WebUI.sleep(5);
+        WebUI.sleep(1);
         WebUI.VerifyTextSoft(pageNameAct,pageNameExp);
         WebUI.sendText(email,mail);
         WebUI.sendText(password,pass);

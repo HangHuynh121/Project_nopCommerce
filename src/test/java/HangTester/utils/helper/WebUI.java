@@ -10,6 +10,7 @@ import org.testng.IClass;
 import org.testng.asserts.SoftAssert;
 
 import java.time.Duration;
+import java.util.Arrays;
 
 public class WebUI {
 
@@ -47,7 +48,7 @@ public class WebUI {
         Actions act = new Actions(DriverManager.getDriver());
         act.keyDown(Keys.ENTER).keyUp(Keys.ENTER).build().perform();
         sleep(step_time);
-        Log("Clear text on: " + by );
+        Log("Click ENTER: " + by );
     }
 
     public static void sendText( By by, String text){
@@ -66,13 +67,35 @@ public class WebUI {
 
     }
 
+
     public static void OpenHideItem(By by, String property, String SttHide){
         WebElement element = DriverManager.getDriver().findElement(by);
         String stt = element.getAttribute(property);
-        if (stt.equals(SttHide)){
+        if (!stt.endsWith(SttHide)){
+            clickElement(by);
+        }
+        sleep(step_time);
+        Log("Open hide Item: " + by);
+    }
+
+    public static Boolean visibleElement(By element) {
+        try {
+            DriverManager.getDriver().findElement(element).click();
+            return false;
+        } catch (ElementNotInteractableException e) {
+            return true;
+        }
+    }
+
+    public static void openAdvance(String classname, String enable, By by){
+        JavascriptExecutor js = (JavascriptExecutor) DriverManager.getDriver();
+        System.out.println(js.executeScript("document.getElementsByClassName('" + classname + "').innerText;"));
+        String text = js.executeScript("document.getElementsByClassName('" + classname + "').innerText;").toString();
+        if (!text.endsWith(enable)){
             WebUI.clickElement(by);
         }
-        Log("Open hide Item: " + by);
+        sleep(step_time);
+        Log("Open Advance: " + classname);
     }
 
     public static void checkCheckbox(String checkboxID){
@@ -116,15 +139,23 @@ public class WebUI {
         waitForElementVisible(by);
         sleep(step_time);
         String act = DriverManager.getDriver().findElement(by).getText();
+        Log(act);
         sa.assertEquals(act, exp);
         sa.assertAll();
         Log("Verify text equal on: " + by);
     }
 
-
-    public static void VerifyTextHard(){
-
-    }
+//    public static void VerifyTextSoftAray(  By by, int num,String exp){
+//        waitForElementVisible(by);
+//        SoftAssert sa = new SoftAssert();
+//        waitForElementVisible(by);
+//        sleep(step_time);
+//        String act = DriverManager.getDriver().findElement(by).getText();
+//        Log();
+//        sa.assertEquals(act[num], exp);
+//        sa.assertAll();
+//        Log("Verify text equal on: " + by);
+//    }
 
 
     public static void VerifyTextSoftNotEqual(  By by, String exp){
@@ -150,7 +181,7 @@ public class WebUI {
         wait.until(ExpectedConditions.visibilityOfElementLocated(by));
     }
 
-    private static double step_time = 0.3;
+    private static double step_time = 0.5;
     public static void sleep(double seconds){
         try{
             Thread.sleep((long) (1000 *seconds));
