@@ -5,18 +5,15 @@ import org.openqa.selenium.By;
 
 public class ProductPage {
 
-//    private WebDriver driver;
-
     public ProductPage() {
-//        this.driver = driver;
-//        new WebUI(driver);
+
     }
 
     //ADD NEW
 
     //Category info
+    private By swich = By.xpath("//div[@class='onoffswitch']");
     private By SearchItem = By.xpath("//div[@data-hideattribute='ProductListPage.HideSearchBlock']");
-    private String SearchHide = "opened";
     private By AddButton = By.xpath("//a[normalize-space()='Add new']");
     private By swith = By.xpath("//div[@class='onoffswitch']");
     private String swithHide = "none;";
@@ -25,39 +22,32 @@ public class ProductPage {
     private By nameAddProduct = By.xpath("//h1[contains(.,'Add a new product')]");
     private By nameAdd = By.xpath("//input[@id='Name']");
     private By description = By.xpath("//textarea[@id='ShortDescription']");
-    private By ProductCombobox = By.xpath("//div[@class='form-group row']//input[@role='listbox']");
+    private By CateCombobox = By.xpath("//div[@class='form-group row']//input[@role='listbox']");
     private By SelectCate = By.xpath("//ul[@id='SelectedCategoryIds_listbox']//li[1]");
-    private By Manufactor = By.xpath("//body/div[@class='wrapper']/div[@class='content-wrapper']/form[@id='product-form']/section[@class='content']/div[@class='container-fluid']/div[@class='form-horizontal']/nop-cards[@id='product-cards']/nop-card/div[@id='product-info']/div[@class='card-body']/div[@class='form-group row advanced-setting']/div[@class='col-md-9']/div[@class='k-widget k-multiselect k-multiselect-clearable']/div[@role='listbox']/input[1]");
-    private By SelectMManu = By.xpath("//ul[@id='SelectedManufacturerIds_listbox']//li[1]");
+    private By Manufactor = By.xpath("//ul[@id = 'SelectedManufacturerIds_taglist']//following-sibling::input[1]");
+    private By SelectManu = By.xpath("//ul[@id='SelectedManufacturerIds_listbox']//li[1]");
 
 
     public void ProductInfo(String Name, String des, String searchCate, String searchManu) {
+        WebUI.Log("PRODUCT INFOR");
         WebUI.openURL("https://admin-demo.nopcommerce.com/Admin/Product/List");
         WebUI.clickElement(AddButton);
         WebUI.VerifyTextSoft(nameAddProduct, "Add a new product back to product list");
         WebUI.moveToElemet(ProductItem);
-        WebUI.OpenHideItem(ProductItem, "class", ProductHide);
+        WebUI.OpenHideItem(nameAdd, ProductItem);
         WebUI.sendText(nameAdd, Name);
         WebUI.sendText(description, des);
-
-//        WebUI.clickElement(CategoryCombobox);
-        WebUI.sendText(ProductCombobox, searchCate);
+        WebUI.sendText(CateCombobox, searchCate);
         WebUI.clickJS(SelectCate);
-        boolean x = WebUI.visibleElement(Manufactor);
-        String y = new Boolean(x).toString();
-        System.out.println(y);
-        if (y.equals("true")) {
-            WebUI.clickElement(swith);
-            WebUI.sleep(1);
-        }
+        WebUI.OpenHideItem(Manufactor,swich);
+        WebUI.moveToElemet(Manufactor);
         WebUI.sendText(Manufactor, searchManu);
-        WebUI.clickJS(SelectMManu);
+        WebUI.clickJS(SelectManu);
 
     }
 
     //Price
     private By priceItem = By.xpath("//div[@id='product-price']");
-    private String priceHide = "card-outline";
     private By Price = By.xpath("//div[@id='product-price-area']/div[2]//span//span//input[1]");
     private By inputPrice = By.xpath("//div[@id='product-price-area']/div[2]//span//span//input[2]");
 
@@ -68,15 +58,17 @@ public class ProductPage {
     private By newProduct = By.xpath("//tbody//tr//td[3]");
 
     public void ProductPrice(String price, String search, String search1) {
+        WebUI.Log("PRODUCT PRICE");
         WebUI.moveToElemet(priceItem);
-        WebUI.OpenHideItem(priceItem, "class", priceHide);
-        WebUI.clickElement(Price);
-        WebUI.clearText(Price);
+        WebUI.OpenHideItem(Price, priceItem);
+        WebUI.clickElement(inputPrice);
+        WebUI.clearText(inputPrice);
         WebUI.sendText(inputPrice, price);
         WebUI.moveToElemet(saveButton);
         WebUI.clickElement(saveButton);
         WebUI.sleep(1);
-        WebUI.OpenHideItem(SearchItem, "class", SearchHide);
+        WebUI.Log("SEARCH NEW PRODUCT");
+        WebUI.OpenHideItem(searchPro,SearchItem);
         WebUI.sendText(searchPro, search);
         WebUI.selectDopdown(searchCateID, search1);
         WebUI.clickElement(searchButton);
@@ -95,7 +87,8 @@ public class ProductPage {
     public  void editProduct(String Name, String searchCate, String NameEdit, String desEdit){
 
         WebUI.openURL("https://admin-demo.nopcommerce.com/Admin/Product/List");
-        WebUI.OpenHideItem(SearchItem,"class", SearchHide );
+        WebUI.Log("SEARCH PRODUCT");
+        WebUI.OpenHideItem(searchPro,SearchItem );
         WebUI.sendText(searchPro,Name);
         WebUI.selectDopdown(searchCateID, searchCate);
         WebUI.clickElement(searchButton);
@@ -112,6 +105,7 @@ public class ProductPage {
         WebUI.moveToElemet(saveEditButton);
         WebUI.clickElement(saveEditButton);
         WebUI.sleep(1);
+        WebUI.Log(" SEARCH EDIT PRODUCT");
         WebUI.sendText(searchPro,NameEdit);
         WebUI.selectDopdown(searchCateID, searchCate);
         WebUI.clickElement(searchButton);
@@ -128,7 +122,7 @@ public class ProductPage {
 
     public void delProduct(String NameEdit, String searchCate ){
         WebUI.openURL("https://admin-demo.nopcommerce.com/Admin/Product/List");
-        WebUI.OpenHideItem(SearchItem,"class", SearchHide );
+        WebUI.OpenHideItem(searchPro,SearchItem);
         WebUI.sendText(searchPro, NameEdit);
         WebUI.selectDopdown(searchCateID, searchCate);
         WebUI.clickElement(searchButton);

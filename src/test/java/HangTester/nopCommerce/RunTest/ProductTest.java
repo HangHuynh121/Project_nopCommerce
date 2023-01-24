@@ -21,8 +21,8 @@ public class ProductTest extends BaseTest {
 
     @Test
     public void addNew() {
-        productPage.ProductInfo("Dell", "Pink", "Computers", "HP");
-        productPage.ProductPrice("1000", "Dell","Computers");
+        productPage.ProductInfo("Dell", "Pink", "Computers", "Dell");
+        productPage.ProductPrice("1000", "Dell","Dell");
     }
 
     @Test

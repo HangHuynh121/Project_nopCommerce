@@ -5,11 +5,8 @@ import org.openqa.selenium.By;
 
 public class LoginAdminPage {
 
-//    private WebDriver driver;
-    //Hàm xây dựng
     public LoginAdminPage(){
-//        this.driver = driver;
-//        new WebUI(driver); //Khởi tạo giá trị class WebUI
+
     }
 
     public String pageNameExp = "Admin area demo";
@@ -21,6 +18,7 @@ public class LoginAdminPage {
     private By nameAdminPageAct = By.xpath("//h1[normalize-space()='Dashboard']");
     public  String nameAdminPageExp = "Dashboard";
     public void Login(String mail, String pass){
+        WebUI.Log("LOGIN");
         WebUI.openURL("https://admin-demo.nopcommerce.com/login?ReturnUrl=%2Fadmin%2F");
         WebUI.sleep(1);
         WebUI.VerifyTextSoft(pageNameAct,pageNameExp);
@@ -28,6 +26,8 @@ public class LoginAdminPage {
         WebUI.sendText(password,pass);
         WebUI.clickElement(loginButton);
         WebUI.VerifyTextSoft(nameAdminPageAct,nameAdminPageExp);
+        WebUI.Log("----------------------------------------------------------------------------------------------------------------------");
+
     }
 
 

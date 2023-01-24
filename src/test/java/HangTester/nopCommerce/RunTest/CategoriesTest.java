@@ -18,21 +18,21 @@ public class CategoriesTest extends BaseTest {
         loginAdminPage.Login("","");
     }
 
-    @Test
+    @Test (priority = 1)
     public void addNew(){
-        categoriesPage.CategoryInfo("Furniture","Table",  "Computers");
+        categoriesPage.CategoryInfo("Furniture","Table", "Computers");
         categoriesPage.CatgoryDisplay("100", "1000");
         categoriesPage.Mapping("Administrators", "Your store name");
         categoriesPage.SEO("home","normal", "4", "Computers", "Furniture");
     }
 
-    @Test
+    @Test (priority = 2)
     public  void editNew(){
         categoriesPage.editCategory("Furniture","School","Chair","Computers");
 
     }
 
-    @Test
+    @Test (priority = 3)
     public void  delNew(){
         categoriesPage.delCategory("School");
     }

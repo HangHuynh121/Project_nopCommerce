@@ -22,17 +22,18 @@ public class ManufacturersTest extends BaseTest {
 
     @Test (priority = 1)
     public void addNew(){
-        manufacturersPage.AddManufacture("Dell","Laptop");
+        manufacturersPage.ManufactorItem("Dell", "pink");
+        manufacturersPage.ManufactorDisplay("100","1000","Dell");
 
     }
 
     @Test(priority = 2)
     public void EditNew(){
-        manufacturersPage.EditManufacture("HP","");
+        manufacturersPage.EditManufacture("Dell","HP","Light pink");
     }
 
     @Test (priority = 3)
     public void DelNew(){
-        manufacturersPage.DeleteManufacture();
+        manufacturersPage.DeleteManufacture("HP");
     }
 }

@@ -14,12 +14,6 @@ import java.util.Arrays;
 
 public class WebUI {
 
-    //Truyền driver tập trung 1 nơi
-//    private static WebDriver  driver;
-//    public WebUI(WebDriver driver){
-//        WebUI.driver = driver;
-//    }
-
     public static void openURL( String url){
         DriverManager.getDriver().get(url);
     }
@@ -67,15 +61,20 @@ public class WebUI {
 
     }
 
-
-    public static void OpenHideItem(By by, String property, String SttHide){
-        WebElement element = DriverManager.getDriver().findElement(by);
-        String stt = element.getAttribute(property);
-        if (!stt.endsWith(SttHide)){
-            clickElement(by);
+    public static void OpenHideItem(By visible, By action){
+        try {
+            WebDriverWait wait = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(1));
+            wait.until(ExpectedConditions.visibilityOfElementLocated(visible));
+            try {
+                DriverManager.getDriver().findElement(visible).click();
+            } catch (WebDriverException e) {
+                System.out.println("Item:" + action+ " on");
+            }
+        } catch (TimeoutException e) {
+            System.out.println("Item: " + action+ " off");
+            WebUI.moveToElemet(action);
+            WebUI.clickElement(action);
         }
-        sleep(step_time);
-        Log("Open hide Item: " + by);
     }
 
     public static Boolean visibleElement(By element) {
@@ -87,15 +86,20 @@ public class WebUI {
         }
     }
 
-    public static void openAdvance(String classname, String enable, By by){
-        JavascriptExecutor js = (JavascriptExecutor) DriverManager.getDriver();
-        System.out.println(js.executeScript("document.getElementsByClassName('" + classname + "').innerText;"));
-        String text = js.executeScript("document.getElementsByClassName('" + classname + "').innerText;").toString();
-        if (!text.endsWith(enable)){
-            WebUI.clickElement(by);
+    public static void onoffSwich(By visible, By action){
+        try {
+            WebDriverWait wait = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(1));
+            wait.until(ExpectedConditions.visibilityOfElementLocated(visible));
+            try {
+                DriverManager.getDriver().findElement(visible).click();
+            } catch (WebDriverException e) {
+                System.out.println("Advanced on");
+            }
+        } catch (TimeoutException e) {
+            System.out.println("Advanced off");
+            WebUI.moveToElemet(action);
+            WebUI.clickElement(action);
         }
-        sleep(step_time);
-        Log("Open Advance: " + classname);
     }
 
     public static void checkCheckbox(String checkboxID){
@@ -139,23 +143,10 @@ public class WebUI {
         waitForElementVisible(by);
         sleep(step_time);
         String act = DriverManager.getDriver().findElement(by).getText();
-        Log(act);
         sa.assertEquals(act, exp);
         sa.assertAll();
         Log("Verify text equal on: " + by);
     }
-
-//    public static void VerifyTextSoftAray(  By by, int num,String exp){
-//        waitForElementVisible(by);
-//        SoftAssert sa = new SoftAssert();
-//        waitForElementVisible(by);
-//        sleep(step_time);
-//        String act = DriverManager.getDriver().findElement(by).getText();
-//        Log();
-//        sa.assertEquals(act[num], exp);
-//        sa.assertAll();
-//        Log("Verify text equal on: " + by);
-//    }
 
 
     public static void VerifyTextSoftNotEqual(  By by, String exp){

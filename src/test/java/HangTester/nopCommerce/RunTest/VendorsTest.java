@@ -22,7 +22,7 @@ public class VendorsTest extends BaseTest {
     public void addNew(){
         vendorsPage.VendorInfo("", "Vendor 3","vendor3email@gmail.com");
         vendorsPage.VendorDisplay("100", "1000");
-        vendorsPage.VendorSEO("Vendor-3","For security purposes, the feature you have requested is not available on the demo site.");
+        vendorsPage.VendorSEO("Vendor-3","×\nFor security purposes, the feature you have requested is not available on the demo site.");
 
     }
 }
