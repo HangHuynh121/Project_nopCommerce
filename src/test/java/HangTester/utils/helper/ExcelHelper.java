@@ -105,13 +105,13 @@ public class ExcelHelper {
             workbook = new XSSFWorkbook(fis);
 
             // load the sheet
-            Sheet sh = workbook.getSheet(sheetName);
+            Sheet sheet = workbook.getSheet(sheetName);
 
             // load the row
-            Row row = sh.getRow(0);
+            Row row = sheet.getRow(0);
 
             //Lấy số dòng số cột
-            int noOfRows = sh.getPhysicalNumberOfRows();
+            int noOfRows = sheet.getPhysicalNumberOfRows();
             int noOfCols = row.getLastCellNum();
 
             System.out.println(noOfRows + " - " + noOfCols);
@@ -122,7 +122,7 @@ public class ExcelHelper {
             //
             for (int i = 1; i < noOfRows; i++) {
                 for (int j = 0; j < noOfCols; j++) {
-                    row = sh.getRow(i);
+                    row = sheet.getRow(i);
                     cell = row.getCell(j);
 
                     switch (cell.getCellType()) {

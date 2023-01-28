@@ -22,7 +22,7 @@ public class CategoriesTest extends BaseTest {
         loginAdminPage.Login(excelHelper.getCellData("Email",1),excelHelper.getCellData("Password",1));
     }
 
-    @Test (priority = 1, dataProvider = "data_provider_category_excel", dataProviderClass = DataProviderManager.class)
+    @Test (priority = 1, dataProvider = "data_provider_categoryAdd_excel", dataProviderClass = DataProviderManager.class)
     public void addNew(String name, String des, String parentCat, String PriceF, String PriceT,String CusValue, String StoreValue, String search, String title, String key){
         categoriesPage.CategoryInfo(name,des,parentCat);
         categoriesPage.CatgoryDisplay(PriceF,PriceT);
@@ -30,14 +30,14 @@ public class CategoriesTest extends BaseTest {
         categoriesPage.SEO(search, title, key, parentCat, name);
     }
 
-    @Test (priority = 2)
-    public  void editNew(){
-        categoriesPage.editCategory("Furniture","School","Chair","Computers");
+    @Test (priority = 2, dataProvider = "data_provider_categoryEdit_excel", dataProviderClass = DataProviderManager.class)
+    public  void editNew(String name, String newName, String newDes, String parentCat){
+        categoriesPage.editCategory(name,newName,newDes,parentCat);
 
     }
 
-    @Test (priority = 3)
-    public void  delNew(){
-        categoriesPage.delCategory("School");
+    @Test (priority = 3, dataProvider = "data_provider_categoryDel_excel" , dataProviderClass =  DataProviderManager.class)
+    public void  delNew(String search){
+        categoriesPage.delCategory(search);
     }
 }
