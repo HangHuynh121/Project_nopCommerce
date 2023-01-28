@@ -26,7 +26,7 @@ public class ProductTest extends BaseTest {
     @Test (dataProvider = "data_provider_productAdd_excel", dataProviderClass = DataProviderManager.class)
     public void addNew(String name, String des, String searchCat, String searchManu, String price) {
         productPage.ProductInfo(name, des, searchCat, searchManu);
-        productPage.ProductPrice(price, name,name);
+        productPage.ProductPrice(price, name, searchCat);
     }
 
     @Test (dataProvider = "data_provider_productEdit_excel", dataProviderClass = DataProviderManager.class)

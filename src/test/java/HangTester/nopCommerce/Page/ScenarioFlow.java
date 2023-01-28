@@ -3,6 +3,8 @@ package HangTester.nopCommerce.Page;
 import HangTester.utils.helper.WebUI;
 import org.openqa.selenium.By;
 
+import javax.swing.*;
+
 public class ScenarioFlow {
     public LoginAdminPage loginAdminPage;
     public ManufacturersPage manufacturersPage;
@@ -19,9 +21,9 @@ public class ScenarioFlow {
     private By CustomerMenu = By.xpath("//a[@href='#']//p[contains(text(),'Customers')]");
     private By VendorMenu = By.xpath("//p[normalize-space()='Vendors']");
     private By ProductMenu = By.xpath("//p[normalize-space()='Products']");
-    public ManufacturersPage login(){
+    public ManufacturersPage login(String mail, String pass){
         loginAdminPage = new LoginAdminPage();
-        loginAdminPage.Login("admin@yourstore.com","admin" );
+        loginAdminPage.Login(mail, pass);
         WebUI.Log("----------------------------------------------------------------------------------------------------------------------");
         WebUI.OpenHideItem(ManufactorMenu,CatalogMenu);
         WebUI.clickElement(ManufactorMenu);
@@ -29,24 +31,23 @@ public class ScenarioFlow {
     }
 
     //ADD NEW MANUFACTORERS
-    public CategoriesPage manufacturers(){
+    public CategoriesPage manufacturers(String name, String des, String priceF, String priceT){
         manufacturersPage = new ManufacturersPage();
-        manufacturersPage.ManufactorItem("Dell", "pink");
-        manufacturersPage.ManufactorDisplay("100","1000","Dell");
+        manufacturersPage.ManufactorItem(name, des);
+        manufacturersPage.ManufactorDisplay(priceF,priceT,name);
         WebUI.Log("----------------------------------------------------------------------------------------------------------------------");
         WebUI.OpenHideItem(CategoryMenu,CatalogMenu);
         WebUI.clickElement(CategoryMenu);
-
         return new CategoriesPage();
     }
 
     //ADD NEW CATEGORY
-    public VendorsPage category(){
+    public VendorsPage category(String name, String des, String parentCat, String PriceF, String PriceT,String CusValue, String StoreValue, String search, String title, String key){
         categoriesPage = new CategoriesPage();
-        categoriesPage.CategoryInfo("Furniture","Table",  "Computers");
-        categoriesPage.CatgoryDisplay("100", "1000");
-        categoriesPage.Mapping("Administrators", "Your store name");
-        categoriesPage.SEO("home","normal", "4", "Computers", "Furniture");
+        categoriesPage.CategoryInfo(name,des,parentCat);
+        categoriesPage.CatgoryDisplay(PriceF,PriceT);
+        categoriesPage.Mapping(CusValue,StoreValue);
+        categoriesPage.SEO(search, title, key, parentCat, name);
         WebUI.Log("----------------------------------------------------------------------------------------------------------------------");
         WebUI.OpenHideItem(VendorMenu,CustomerMenu);
         WebUI.clickElement(VendorMenu);
@@ -54,11 +55,11 @@ public class ScenarioFlow {
     }
 
     //ADD NEW VENDOR
-    public ProductPage vendor(){
+    public ProductPage vendor(String name, String mail, String priceF, String priceT,String nameSEO, String alert){
         vendorsPage = new VendorsPage();
-        vendorsPage.VendorInfo("", "Vendor 3","vendor3email@gmail.com");
-        vendorsPage.VendorDisplay("100", "1000");
-        vendorsPage.VendorSEO("Vendor-3","×\nFor security purposes, the feature you have requested is not available on the demo site.");
+        vendorsPage.VendorInfo( name, mail);
+        vendorsPage.VendorDisplay(priceF, priceT);
+        vendorsPage.VendorSEO(nameSEO, alert);
         WebUI.Log("----------------------------------------------------------------------------------------------------------------------");
         WebUI.OpenHideItem(ProductMenu,CatalogMenu);
         WebUI.clickElement(ProductMenu);
@@ -66,10 +67,10 @@ public class ScenarioFlow {
     }
 
     //ADD NEW PRODUCT
-    public void product(){
+    public void product(String name, String des, String searchCat, String searchManu, String price){
         productPage = new ProductPage();
-        productPage.ProductInfo("Dell", "Pink", "Computers", "Dell");
-        productPage.ProductPrice("1000", "Dell","Computers");
+        productPage.ProductInfo(name, des, searchCat, searchManu);
+        productPage.ProductPrice(price, name, searchCat);
         WebUI.Log("----------------------------------------------------------------------------------------------------------------------");
     }
 

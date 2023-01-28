@@ -87,4 +87,13 @@ public class DataProviderManager {
         Object[][] data= excelHelper.getExcelData(ExcelHelper.getCurrentDir() + "src/test/java/HangTester/nopCommerce/DataTest/Product.xlsx","Delete");
         return data;
     }
+
+    //VENDOR
+    //ADD
+    @DataProvider(name = "data_provider_vendorAdd_excel", parallel = true)
+    public Object[][] dataVendorAddFromExcel() {
+        ExcelHelper excelHelper = new ExcelHelper();
+        Object[][] data= excelHelper.getExcelData(ExcelHelper.getCurrentDir() + "src/test/java/HangTester/nopCommerce/DataTest/Vendor.xlsx","Add");
+        return data;
+    }
 }

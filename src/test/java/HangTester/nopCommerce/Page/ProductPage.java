@@ -61,8 +61,8 @@ public class ProductPage {
         WebUI.Log("PRODUCT PRICE");
         WebUI.moveToElemet(priceItem);
         WebUI.OpenHideItem(Price, priceItem);
-        WebUI.clickElement(inputPrice);
-        WebUI.clearText(inputPrice);
+        WebUI.clickElement(Price);
+        WebUI.clearText(Price);
         WebUI.sendText(inputPrice, price);
         WebUI.moveToElemet(saveButton);
         WebUI.clickElement(saveButton);

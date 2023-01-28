@@ -24,7 +24,7 @@ public class VendorsPage {
     private By email = By.xpath("//input[@id='Email']");
     private String checkboxID = "Active";
 
-    public void VendorInfo(String off, String Name, String mail) {
+    public void VendorInfo( String Name, String mail) {
         WebUI.openURL("https://admin-demo.nopcommerce.com/Admin/Vendor/List");
         WebUI.clickElement(AddButton);
         WebUI.VerifyTextSoft(nameAddPage, "Add a new vendor back to vendor list");
@@ -33,7 +33,7 @@ public class VendorsPage {
         WebUI.OpenHideItem(nameAdd,VendorItem);
         WebUI.sendText(nameAdd, Name);
         WebUI.sendText(email,mail);
-        WebUI.sleep(2);
+        WebUI.sleep(1);
         WebUI.checkCheckbox(checkboxID);
     }
 

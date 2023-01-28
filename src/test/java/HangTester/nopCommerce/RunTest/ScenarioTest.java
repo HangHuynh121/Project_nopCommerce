@@ -11,9 +11,9 @@ public class ScenarioTest extends BaseTest {
     public VendorsPage vendorsPage;
     public ProductPage productPage;
     @Test
-    public void ScenarioTest(){
+    public void ScenarioTest(String mail, String pass){
         scenarioFlow = new ScenarioFlow();
-        manufacturersPage = scenarioFlow.login();
+        manufacturersPage = scenarioFlow.login(mail, pass);
         categoriesPage = scenarioFlow.manufacturers();
         vendorsPage = scenarioFlow.category();
         productPage = scenarioFlow.vendor();
