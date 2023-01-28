@@ -15,7 +15,7 @@ public class VendorsTest extends BaseTest {
     public void VendorsTest(){
         loginAdminPage = new LoginAdminPage();
         vendorsPage = new VendorsPage();
-        loginAdminPage.Login("","");
+        loginAdminPage.Login("admin@yourstore.com","admin");
     }
 
     @Test

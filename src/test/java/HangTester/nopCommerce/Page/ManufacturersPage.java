@@ -101,7 +101,6 @@ public class ManufacturersPage {
     //DELETE NEW
     private By Delete = By.xpath("//button[@id='delete-selected']");
     private By Checkbox = By.xpath("//div[@class='dataTables_scroll']/div[2]//tbody/tr[1]/td[1]/input");
-
     private By YesButton = By.xpath("//button[@id='delete-selected-action-confirmation-submit-button']");
 
     public void DeleteManufacture(String NameEdit) {

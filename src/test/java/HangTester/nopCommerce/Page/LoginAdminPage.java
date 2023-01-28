@@ -22,7 +22,11 @@ public class LoginAdminPage {
         WebUI.openURL("https://admin-demo.nopcommerce.com/login?ReturnUrl=%2Fadmin%2F");
         WebUI.sleep(1);
         WebUI.VerifyTextSoft(pageNameAct,pageNameExp);
+        WebUI.clickElement(email);
+        WebUI.clearText(email);
         WebUI.sendText(email,mail);
+        WebUI.clickElement(password);
+        WebUI.clearText(password);
         WebUI.sendText(password,pass);
         WebUI.clickElement(loginButton);
         WebUI.VerifyTextSoft(nameAdminPageAct,nameAdminPageExp);

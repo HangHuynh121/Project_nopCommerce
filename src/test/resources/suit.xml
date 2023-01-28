@@ -5,11 +5,9 @@
     <test name="Manufacturers_Chrome"  >
         <parameter name="browser" value="chrome"></parameter>
         <classes>
-            <class name="HangTester.nopCommerce.RunTest.ProductTest" >
+            <class name="HangTester.nopCommerce.RunTest.LoginAdminTest" >
                 <methods>
-                    <include name="addNew"/>
-                    <include name="editNew"/>
-                    <include name="delNew"/>
+                    <include name="LoginValid"/>
                 </methods>
             </class>
         </classes>

@@ -110,6 +110,7 @@ public class CategoriesPage {
         WebUI.moveToElemet(saveAddButton);
         WebUI.clickElement(saveAddButton);
         WebUI.sleep(1);
+        WebUI.Log("----------------------------------------------------------------------------------------------------------------------");
         WebUI.Log("SEARCH NEW CATEGORY");
         WebUI.OpenHideItem(searchCat,SearchItem);
         WebUI.sendText(searchCat,Name);
@@ -118,6 +119,7 @@ public class CategoriesPage {
         WebUI.moveToElemet(nameNewCategory);
         WebUI.sleep(1);
         WebUI.VerifyTextSoft(nameNewCategory, parentCat + " >> "+ Name);
+        WebUI.Log("----------------------------------------------------------------------------------------------------------------------");
     }
 
 
@@ -150,6 +152,7 @@ public class CategoriesPage {
         WebUI.moveToElemet(nameNewCategory);
         WebUI.sleep(1);
         WebUI.VerifyTextSoft(nameNewCategory, parentCat + " >> "+ NameEdit);
+        WebUI.Log("----------------------------------------------------------------------------------------------------------------------");
     }
 
     //DELETE NEW

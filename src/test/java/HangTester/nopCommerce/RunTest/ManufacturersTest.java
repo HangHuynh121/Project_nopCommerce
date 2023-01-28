@@ -17,7 +17,7 @@ public class ManufacturersTest extends BaseTest {
     public void ManufacturesTest(){
         loginAdminPage = new LoginAdminPage();
         manufacturersPage = new ManufacturersPage();
-        loginAdminPage.Login("","");
+        loginAdminPage.Login("admin@yourstore.com","admin");
     }
 
     @Test (priority = 1)

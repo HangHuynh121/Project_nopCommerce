@@ -18,7 +18,7 @@ public class Create_LoginCustomerTest extends BaseTest {
 
     @Test
     public void createAcc(){
-        loginAdminPage.Login("","");
+        loginAdminPage.Login("admin@yourstore.com","admin");
         loginAdminPage = create_loginCustomerPage.CreateACC("NamNguyen1833@gmail.com","Hello123#","Add a new customer back to customer list",
                 "Hang","Huynh","Administrators");
         create_loginCustomerPage.LoginNewACC("NamNguyen1833@gmail.com", "Hello123#");

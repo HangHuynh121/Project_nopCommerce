@@ -21,7 +21,7 @@ public class ScenarioFlow {
     private By ProductMenu = By.xpath("//p[normalize-space()='Products']");
     public ManufacturersPage login(){
         loginAdminPage = new LoginAdminPage();
-        loginAdminPage.Login("","" );
+        loginAdminPage.Login("admin@yourstore.com","admin" );
         WebUI.Log("----------------------------------------------------------------------------------------------------------------------");
         WebUI.OpenHideItem(ManufactorMenu,CatalogMenu);
         WebUI.clickElement(ManufactorMenu);

@@ -16,7 +16,7 @@ public class ProductTest extends BaseTest {
     public void ProductTest(){
         loginAdminPage = new LoginAdminPage();
         productPage = new ProductPage();
-        loginAdminPage.Login("","");
+        loginAdminPage.Login("admin@yourstore.com","admin");
     }
 
     @Test

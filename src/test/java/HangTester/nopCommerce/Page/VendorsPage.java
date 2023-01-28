@@ -37,7 +37,6 @@ public class VendorsPage {
         WebUI.checkCheckbox(checkboxID);
     }
 
-
     //Display
     private By DisplayItem = By.xpath("//div[contains(text(),'Display')]");
     private String priceRange = "PriceRangeFiltering";
@@ -82,6 +81,7 @@ public class VendorsPage {
     WebUI.sendText(searchVendor,name);
     WebUI.clickElement(searchButton);
    }
+
 }
 
 
