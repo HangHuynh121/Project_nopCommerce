@@ -4,6 +4,8 @@ import HangTester.browsers.BaseTest;
 import HangTester.nopCommerce.Page.CategoriesPage;
 import HangTester.nopCommerce.Page.LoginAdminPage;
 import HangTester.nopCommerce.Page.ProductPage;
+import HangTester.utils.helper.DataProviderManager;
+import HangTester.utils.helper.ExcelHelper;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -16,22 +18,24 @@ public class ProductTest extends BaseTest {
     public void ProductTest(){
         loginAdminPage = new LoginAdminPage();
         productPage = new ProductPage();
-        loginAdminPage.Login("admin@yourstore.com","admin");
+        ExcelHelper excelHelper = new ExcelHelper();
+        excelHelper.setExcelFile("src/test/java/HangTester/nopCommerce/DataTest/Login.xlsx","login");
+        loginAdminPage.Login(excelHelper.getCellData("Email",1),excelHelper.getCellData("Password",1));
     }
 
-    @Test
-    public void addNew() {
-        productPage.ProductInfo("Dell", "Pink", "Computers", "Dell");
-        productPage.ProductPrice("1000", "Dell","Dell");
+    @Test (dataProvider = "data_provider_productAdd_excel", dataProviderClass = DataProviderManager.class)
+    public void addNew(String name, String des, String searchCat, String searchManu, String price) {
+        productPage.ProductInfo(name, des, searchCat, searchManu);
+        productPage.ProductPrice(price, name,name);
     }
 
-    @Test
-    public void editNew(){
-        productPage.editProduct("Dell","Computers","Apple", "light pink");
+    @Test (dataProvider = "data_provider_productEdit_excel", dataProviderClass = DataProviderManager.class)
+    public void editNew(String name, String searchCate, String nameEdit, String desEdit){
+        productPage.editProduct(name,searchCate,nameEdit, desEdit);
     }
 
-    @Test
-    public void delNew(){
-        productPage.delProduct("Apple","Computers");
+    @Test (dataProvider = "data_provider_productDel_excel", dataProviderClass = DataProviderManager.class)
+    public void delNew(String nameEdit, String searchCate){
+        productPage.delProduct(nameEdit,searchCate);
     }
 }

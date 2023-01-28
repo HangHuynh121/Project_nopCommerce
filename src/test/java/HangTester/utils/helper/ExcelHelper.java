@@ -87,6 +87,7 @@ public class ExcelHelper {
         return getCellData(rownum,columns.get(columnName));
     }
 
+
     //Lấy thư mục project trong ổ địa
     public static String getCurrentDir(){
         String current = System.getProperty("user.dir") + "/";
@@ -105,13 +106,13 @@ public class ExcelHelper {
             workbook = new XSSFWorkbook(fis);
 
             // load the sheet
-            Sheet sheet = workbook.getSheet(sheetName);
+            Sheet sh = workbook.getSheet(sheetName);
 
             // load the row
-            Row row = sheet.getRow(0);
+            Row row = sh.getRow(0);
 
             //Lấy số dòng số cột
-            int noOfRows = sheet.getPhysicalNumberOfRows();
+            int noOfRows = sh.getPhysicalNumberOfRows();
             int noOfCols = row.getLastCellNum();
 
             System.out.println(noOfRows + " - " + noOfCols);
@@ -122,7 +123,8 @@ public class ExcelHelper {
             //
             for (int i = 1; i < noOfRows; i++) {
                 for (int j = 0; j < noOfCols; j++) {
-                    row = sheet.getRow(i);
+                    row = sh.getRow(i);
+
                     cell = row.getCell(j);
 
                     switch (cell.getCellType()) {

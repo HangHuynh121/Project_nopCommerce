@@ -2,12 +2,14 @@
 
 <suite name="LoginAdmin" verbose="1" >
 
-    <test name="Manufacturers_Chrome"  >
+    <test name="Login"  >
         <parameter name="browser" value="chrome"></parameter>
         <classes>
-            <class name="HangTester.nopCommerce.RunTest.LoginAdminTest" >
+            <class name="HangTester.nopCommerce.RunTest.ProductTest" >
                 <methods>
-                    <include name="LoginValid"/>
+                    <include name="addNew"/>
+                    <include name="editNew"/>
+                    <include name="delNew"/>
                 </methods>
             </class>
         </classes>

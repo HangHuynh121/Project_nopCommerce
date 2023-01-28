@@ -45,7 +45,7 @@ public class ManufacturersPage {
     private By searchManu = By.xpath("//input[@id='SearchManufacturerName']");
     private By searchButton = By.xpath("//button[@id='search-manufacturers']");
     public void ManufactorDisplay(String PriceF, String PriceT, String Name){
-        WebUI.Log("MANUFACTOR DISPLAY");
+        WebUI.Log("ADD NEW MANUFACTURE");
         WebUI.moveToElemet(DisplayItem);
         WebUI.OpenHideItem(displayOrder,DisplayItem);
         WebUI.onoffSwich(MapItem,swich);
@@ -67,6 +67,7 @@ public class ManufacturersPage {
         WebUI.moveToElemet(nameNewManufacture);
         WebUI.sleep(1);
         WebUI.VerifyTextSoft(nameNewManufacture, Name);
+        WebUI.Log("----------------------------------------------------------------------------------------------------------------------");
 
     }
 
@@ -78,6 +79,7 @@ public class ManufacturersPage {
     private By saveEditButton = By.xpath("//button[@name='save']");
 
     public void EditManufacture(String Name, String NameEdit, String desEdit) {
+        WebUI.Log("EDIT NEW MANUFACTURE");
         WebUI.openURL("https://admin-demo.nopcommerce.com/Admin/Manufacturer/List");
         WebUI.OpenHideItem(searchManu,searchItem);
         WebUI.sendText(searchManu,Name);
@@ -95,6 +97,7 @@ public class ManufacturersPage {
         WebUI.moveToElemet(nameNewManufacture);
         WebUI.sleep(1);
         WebUI.VerifyTextSoft(nameNewManufacture, NameEdit);
+        WebUI.Log("----------------------------------------------------------------------------------------------------------------------");
     }
 
 
@@ -104,6 +107,7 @@ public class ManufacturersPage {
     private By YesButton = By.xpath("//button[@id='delete-selected-action-confirmation-submit-button']");
 
     public void DeleteManufacture(String NameEdit) {
+        WebUI.Log("DELETE NEW MANUFACTURE");
         WebUI.openURL("https://admin-demo.nopcommerce.com/Admin/Manufacturer/List");
         WebUI.OpenHideItem(searchManu,searchItem);
         WebUI.sendText(searchManu,NameEdit);

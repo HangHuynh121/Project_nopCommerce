@@ -21,10 +21,8 @@ public class CategoriesPage {
 
         //Category info
     private By SearchItem = By.xpath("//div[@data-hideattribute = 'CategoryPage.HideSearchBlock']");
-    private String SearchHide = "opened";
     private By AddButton = By.xpath("//a[normalize-space()='Add new']");
     private By CategoryItem = By.xpath("//div[@id='category-info']/div[1]");
-    private String CategoryHide  = "card-outline";
     private By nameAddPage = By.xpath("//h1[contains(.,'Add a new category')]");
     private By nameAdd = By.xpath("//input[@id='Name']");
     private By description = By.xpath("//iframe[@id='Description_ifr']");

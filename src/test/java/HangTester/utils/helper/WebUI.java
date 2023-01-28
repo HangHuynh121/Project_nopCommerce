@@ -172,7 +172,7 @@ public class WebUI {
         wait.until(ExpectedConditions.visibilityOfElementLocated(by));
     }
 
-    private static double step_time = 0.5;
+    private static double step_time = 0.1;
     public static void sleep(double seconds){
         try{
             Thread.sleep((long) (1000 *seconds));
