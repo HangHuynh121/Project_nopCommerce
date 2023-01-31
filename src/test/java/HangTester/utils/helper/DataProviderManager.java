@@ -96,4 +96,12 @@ public class DataProviderManager {
         Object[][] data= excelHelper.getExcelData(ExcelHelper.getCurrentDir() + "src/test/java/HangTester/nopCommerce/DataTest/Vendor.xlsx","Add");
         return data;
     }
+
+    //SCENARIO
+    @DataProvider (name = "data_provider_scenario_excel")
+    public Object[][] dataScenarioFromExcel(){
+        ExcelHelper excelHelper = new ExcelHelper();
+        Object[][] data = excelHelper.getDataHashTable(ExcelHelper.getCurrentDir() + "src/test/java/HangTester/nopCommerce/DataTest/Scenario.xlsx", "Sce", 1 ,1);
+        return data;
+    }
 }

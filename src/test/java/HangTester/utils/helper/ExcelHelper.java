@@ -7,7 +7,9 @@ import java.awt.Color;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.Map;
 
 public class ExcelHelper {
@@ -94,6 +96,7 @@ public class ExcelHelper {
         return current;
     }
 
+
     //Get data provider
     public Object[][] getExcelData(String fileName, String sheetName) {
         Object[][] data = null;
@@ -149,4 +152,60 @@ public class ExcelHelper {
         }
         return data;
     }
+
+    //Hàm này dùng cho trường hợp nhiều Field trong File Excel
+    public int getColumns() {
+        try {
+            row = sh.getRow(0);
+            return row.getLastCellNum();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            throw (e);
+        }
+    }
+
+    public Object[][] getDataHashTable(String excelPath, String sheetName, int startRow, int endRow) {
+        System.out.println("Excel Path: " + excelPath);
+        Object[][] data = null;
+
+        try {
+            File f = new File(excelPath);
+            if (!f.exists()) {
+                try {
+                    System.out.println("File Excel path not found.");
+                    throw new IOException("File Excel path not found.");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+            fis = new FileInputStream(excelPath);
+
+            wb = new XSSFWorkbook(fis);
+
+            sh = wb.getSheet(sheetName);
+
+            int rows = sh.getLastRowNum();
+            int columns = getColumns();
+
+            System.out.println("Row: " + rows + " - Column: " + columns);
+            System.out.println("StartRow: " + startRow + " - EndRow: " + endRow);
+
+            data = new Object[(endRow - startRow) + 1][1];
+            Hashtable< String, String > table = null;
+            for (int rowNums = startRow; rowNums <= endRow; rowNums++) {
+                table = new Hashtable < > ();
+                for (int colNum = 0; colNum < columns; colNum++) {
+                    table.put(getCellData(0, colNum), getCellData(rowNums, colNum));
+                }
+                data[rowNums - startRow][0] = table;
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return data;
+    }
+
+
 }
