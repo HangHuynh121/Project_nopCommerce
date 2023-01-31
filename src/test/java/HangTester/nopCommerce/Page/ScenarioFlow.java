@@ -24,7 +24,7 @@ public class ScenarioFlow {
         excelHelper.getExcelData("src/test/java/HangTester/nopCommerce/DataTest/Login.xlsx","login");
         loginAdminPage = new LoginAdminPage();
 //        loginAdminPage.Login(excelHelper.getCellData("Email",1), excelHelper.getCellData("Password",1));
-        loginAdminPage.Login("admin@yourstore.com", "admin");
+        loginAdminPage.Login(excelHelper.getCellData("Email",1), excelHelper.getCellData("Password",1));
         WebUI.Log("----------------------------------------------------------------------------------------------------------------------");
         WebUI.OpenHideItem(ManufactorMenu,CatalogMenu);
         WebUI.clickElement(ManufactorMenu);
@@ -36,7 +36,7 @@ public class ScenarioFlow {
         ExcelHelper excelHelper = new ExcelHelper();
         excelHelper.getExcelData("src/test/java/HangTester/nopCommerce/DataTest/Manufactures.xlsx","Add");
         manufacturersPage = new ManufacturersPage();
-        manufacturersPage.ManufactorItem(excelHelper.getCellData("Name",2), excelHelper.getCellData("Description",2));
+        manufacturersPage.ManufactorItem(excelHelper.getCellData("Name",1), excelHelper.getCellData("Description",1));
         manufacturersPage.ManufactorDisplay(excelHelper.getCellData("Price From",1), excelHelper.getCellData("Price To",1),
                 excelHelper.getCellData("Name",1));
 
