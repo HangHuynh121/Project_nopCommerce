@@ -1,6 +1,6 @@
 package HangTester.nopCommerce.Page;
 
-import HangTester.utils.helper.WebUI;
+import HangTester.utils.WebUI;
 import org.openqa.selenium.By;
 
 public class ProductPage {

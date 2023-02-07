@@ -1,7 +1,7 @@
 package HangTester.nopCommerce.Page;
 
-import HangTester.utils.helper.ExcelHelper;
-import HangTester.utils.helper.WebUI;
+import HangTester.Helper.ExcelHelper;
+import HangTester.utils.WebUI;
 import org.openqa.selenium.By;
 
 public class ScenarioFlow {
@@ -21,12 +21,10 @@ public class ScenarioFlow {
     private By ProductMenu = By.xpath("//p[normalize-space()='Products']");
     public ManufacturersPage login(){
         ExcelHelper excelHelper = new ExcelHelper();
-        excelHelper.getExcelData("src/test/java/HangTester/nopCommerce/DataTest/Login.xlsx","login");
+        excelHelper.setExcelFile("src/test/resources/DataTest/Login.xlsx","login");
         loginAdminPage = new LoginAdminPage();
-//        loginAdminPage.Login(excelHelper.getCellData("Email",1), excelHelper.getCellData("Password",1));
         loginAdminPage.Login(excelHelper.getCellData("Email",1), excelHelper.getCellData("Password",1));
-        WebUI.Log("----------------------------------------------------------------------------------------------------------------------");
-        WebUI.OpenHideItem(ManufactorMenu,CatalogMenu);
+             WebUI.OpenHideItem(ManufactorMenu,CatalogMenu);
         WebUI.clickElement(ManufactorMenu);
         return new ManufacturersPage();
     }
@@ -34,7 +32,7 @@ public class ScenarioFlow {
     //ADD NEW MANUFACTURERS
     public CategoriesPage manufacturers(){
         ExcelHelper excelHelper = new ExcelHelper();
-        excelHelper.getExcelData("src/test/java/HangTester/nopCommerce/DataTest/Manufactures.xlsx","Add");
+        excelHelper.setExcelFile("src/test/resources/DataTest/Manufactures.xlsx","Add");
         manufacturersPage = new ManufacturersPage();
         manufacturersPage.ManufactorItem(excelHelper.getCellData("Name",1), excelHelper.getCellData("Description",1));
         manufacturersPage.ManufactorDisplay(excelHelper.getCellData("Price From",1), excelHelper.getCellData("Price To",1),
@@ -49,7 +47,7 @@ public class ScenarioFlow {
     //ADD NEW CATEGORY
     public VendorsPage category(){
         ExcelHelper excelHelper = new ExcelHelper();
-        excelHelper.getExcelData("src/test/java/HangTester/nopCommerce/DataTest/Category.xlsx","Add");
+        excelHelper.setExcelFile("src/test/resources/DataTest/Category.xlsx","Add");
         categoriesPage = new CategoriesPage();
         categoriesPage.CategoryInfo(excelHelper.getCellData("Name",1), excelHelper.getCellData("Description",1),
                 excelHelper.getCellData("Parent category",1));
@@ -68,7 +66,7 @@ public class ScenarioFlow {
     //ADD NEW VENDOR
     public ProductPage vendor(){
         ExcelHelper excelHelper = new ExcelHelper();
-        excelHelper.getExcelData("src/test/java/HangTester/nopCommerce/DataTest/Vendor.xlsx","Add");
+        excelHelper.setExcelFile("src/test/resources/DataTest/Vendor.xlsx","Add");
         vendorsPage = new VendorsPage();
         vendorsPage.VendorInfo(excelHelper.getCellData("Name",1), excelHelper.getCellData("Mail",1));
         vendorsPage.VendorDisplay(excelHelper.getCellData("Price From",1), excelHelper.getCellData("Price To",1));
@@ -82,7 +80,7 @@ public class ScenarioFlow {
     //ADD NEW PRODUCT
     public void product(){
         ExcelHelper excelHelper = new ExcelHelper();
-        excelHelper.getExcelData("src/test/java/HangTester/nopCommerce/DataTest/Product.xlsx","Add");
+        excelHelper.setExcelFile("src/test/resources/DataTest/Product.xlsx","Add");
         productPage = new ProductPage();
         productPage.ProductInfo(excelHelper.getCellData("Name",1), excelHelper.getCellData("Description",1),
                 excelHelper.getCellData("Search Category",1), excelHelper.getCellData("Search Manufcture",1));

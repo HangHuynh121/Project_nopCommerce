@@ -1,9 +1,7 @@
 package HangTester.nopCommerce.Page;
 
-import HangTester.utils.helper.WebUI;
+import HangTester.utils.WebUI;
 import org.openqa.selenium.*;
-import HangTester.browsers.DriverManager;
-import org.testng.Assert;
 
 public class VendorsPage {
     public VendorsPage() {

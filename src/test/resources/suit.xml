@@ -5,7 +5,7 @@
     <test name="Login"  >
         <parameter name="browser" value="chrome"></parameter>
         <classes>
-            <class name="HangTester.nopCommerce.RunTest.ScenarioTest" >
+            <class name="HangTester.nopCommerce.RunTest.ProductTest" >
                 <methods>
                     <include name="addNew"/>
                     <include name="editNew"/>

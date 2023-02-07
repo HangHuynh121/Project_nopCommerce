@@ -1,7 +1,7 @@
 package HangTester.nopCommerce.Page;
 
 import org.openqa.selenium.By;
-import HangTester.utils.helper.WebUI;
+import HangTester.utils.WebUI;
 
 public class ManufacturersPage {
 
@@ -64,6 +64,7 @@ public class ManufacturersPage {
         WebUI.sleep(1);
         WebUI.OpenHideItem(searchManu,searchItem);
         WebUI.sendText(searchManu,Name);
+        WebUI.clearText(searchButton);
         WebUI.moveToElemet(nameNewManufacture);
         WebUI.sleep(1);
         WebUI.VerifyTextSoft(nameNewManufacture, Name);

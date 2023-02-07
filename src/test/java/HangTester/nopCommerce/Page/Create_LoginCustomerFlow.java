@@ -1,12 +1,12 @@
 package HangTester.nopCommerce.Page;
 
-import HangTester.utils.helper.WebUI;
+import HangTester.utils.WebUI;
 import org.openqa.selenium.By;
 
-public class Create_LoginCustomerPage {
+public class Create_LoginCustomerFlow {
     public LoginAdminPage loginAdminPage;
 
-    public Create_LoginCustomerPage() {
+    public Create_LoginCustomerFlow() {
         loginAdminPage = new LoginAdminPage();
     }
 
@@ -72,6 +72,7 @@ public class Create_LoginCustomerPage {
 
     //    LOGIN NEW ACC
     public void LoginNewACC(String emailCus, String passCus) {
+        WebUI.Log("Login by new Customer ACC");
         loginAdminPage.Login(emailCus, passCus);
 
     }

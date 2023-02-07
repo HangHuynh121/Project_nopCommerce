@@ -1,15 +1,7 @@
 package HangTester.nopCommerce.Page;
 
-import HangTester.browsers.DriverManager;
-import com.github.dockerjava.api.model.SearchItem;
 import org.openqa.selenium.By;
-import HangTester.utils.helper.WebUI;
-import org.openqa.selenium.WebElement;
-
-import javax.swing.*;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import HangTester.utils.WebUI;
 
 public class CategoriesPage {
 
