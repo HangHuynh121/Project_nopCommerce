@@ -29,7 +29,7 @@ public class ProductPage {
 
 
     public void ProductInfo(String Name, String des, String searchCate, String searchManu) {
-        WebUI.Log("PRODUCT INFOR");
+        WebUI.LogConsole("PRODUCT INFOR");
         WebUI.openURL("https://admin-demo.nopcommerce.com/Admin/Product/List");
         WebUI.clickElement(AddButton);
         WebUI.VerifyTextSoft(nameAddProduct, "Add a new product back to product list");
@@ -58,7 +58,7 @@ public class ProductPage {
     private By newProduct = By.xpath("//tbody//tr//td[3]");
 
     public void ProductPrice(String price, String search, String search1) {
-        WebUI.Log("PRODUCT PRICE");
+        WebUI.LogConsole("PRODUCT PRICE");
         WebUI.moveToElemet(priceItem);
         WebUI.OpenHideItem(Price, priceItem);
         WebUI.clickElement(Price);
@@ -67,7 +67,7 @@ public class ProductPage {
         WebUI.moveToElemet(saveButton);
         WebUI.clickElement(saveButton);
         WebUI.sleep(1);
-        WebUI.Log("SEARCH NEW PRODUCT");
+        WebUI.LogConsole("SEARCH NEW PRODUCT");
         WebUI.OpenHideItem(searchPro,SearchItem);
         WebUI.sendText(searchPro, search);
         WebUI.selectDopdown(searchCateID, search1);
@@ -75,7 +75,7 @@ public class ProductPage {
         WebUI.sleep(1);
         WebUI.moveToElemet(newProduct);
         WebUI.VerifyTextSoft(newProduct, search);
-        WebUI.Log("----------------------------------------------------------------------------------------------------------------------");
+        WebUI.LogConsole("----------------------------------------------------------------------------------------------------------------------");
     }
 
     //EDIT NEW
@@ -88,7 +88,7 @@ public class ProductPage {
     public  void editProduct(String Name, String searchCate, String NameEdit, String desEdit){
 
         WebUI.openURL("https://admin-demo.nopcommerce.com/Admin/Product/List");
-        WebUI.Log("SEARCH PRODUCT");
+        WebUI.LogConsole("SEARCH PRODUCT");
         WebUI.OpenHideItem(searchPro,SearchItem );
         WebUI.sendText(searchPro,Name);
         WebUI.selectDopdown(searchCateID, searchCate);
@@ -106,14 +106,14 @@ public class ProductPage {
         WebUI.moveToElemet(saveEditButton);
         WebUI.clickElement(saveEditButton);
         WebUI.sleep(1);
-        WebUI.Log(" SEARCH EDIT PRODUCT");
+        WebUI.LogConsole(" SEARCH EDIT PRODUCT");
         WebUI.sendText(searchPro,NameEdit);
         WebUI.selectDopdown(searchCateID, searchCate);
         WebUI.clickElement(searchButton);
         WebUI.moveToElemet(newProduct);
         WebUI.sleep(1);
         WebUI.VerifyTextSoft(newProduct, NameEdit);
-        WebUI.Log("----------------------------------------------------------------------------------------------------------------------");
+        WebUI.LogConsole("----------------------------------------------------------------------------------------------------------------------");
     }
 
     //DELETE NEW
@@ -123,7 +123,7 @@ public class ProductPage {
     private By YesButton = By.xpath("//button[@id='delete-selected-action-confirmation-submit-button']");
 
     public void delProduct(String NameEdit, String searchCate ){
-        WebUI.Log("DELETE NEW PRODUCT");
+        WebUI.LogConsole("DELETE NEW PRODUCT");
         WebUI.openURL("https://admin-demo.nopcommerce.com/Admin/Product/List");
         WebUI.OpenHideItem(searchPro,SearchItem);
         WebUI.sendText(searchPro, NameEdit);

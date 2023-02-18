@@ -32,7 +32,7 @@ public class Create_LoginCustomerFlow {
     private By LogOutButton = By.xpath("//a[normalize-space()='Logout']");
 
     public LoginAdminPage CreateACC(String emailCus, String passCus, String pagename, String FName, String LName, String role) {
-        WebUI.Log("CREATE NEW ACC");
+        WebUI.LogConsole("CREATE NEW ACC");
         WebUI.openURL("https://admin-demo.nopcommerce.com/Admin/Customer/List");
         WebUI.OpenHideItem(CustomerChildMenu, CustomerParentMenu);
         WebUI.clickElement(CustomerChildMenu);
@@ -59,12 +59,12 @@ public class Create_LoginCustomerFlow {
         WebUI.clickElement(searchButton);
         WebUI.VerifyTextSoft(nameNew, emailCus);
 
-        WebUI.Log("----------------------------------------------------------------------------------------------------------------------");
-        WebUI.Log("LOG OUT");
+        WebUI.LogConsole("----------------------------------------------------------------------------------------------------------------------");
+        WebUI.LogConsole("LOG OUT");
         WebUI.moveToElemet(LogOutButton);
         WebUI.sleep(1);
         WebUI.clickElement(LogOutButton);
-        WebUI.Log("----------------------------------------------------------------------------------------------------------------------");
+        WebUI.LogConsole("----------------------------------------------------------------------------------------------------------------------");
         return new LoginAdminPage();
 
     }
@@ -72,7 +72,7 @@ public class Create_LoginCustomerFlow {
 
     //    LOGIN NEW ACC
     public void LoginNewACC(String emailCus, String passCus) {
-        WebUI.Log("Login by new Customer ACC");
+        WebUI.LogConsole("Login by new Customer ACC");
         loginAdminPage.Login(emailCus, passCus);
 
     }

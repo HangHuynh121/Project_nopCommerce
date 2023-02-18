@@ -24,7 +24,7 @@ public class CategoriesPage {
         WebUI.openURL("https://admin-demo.nopcommerce.com/Admin/Category/List");
         WebUI.clickElement(AddButton);
         WebUI.VerifyTextSoft(nameAddPage, "Add a new category back to category list");
-        WebUI.Log("CATEGORY INFO");
+        WebUI.LogConsole("CATEGORY INFO");
         WebUI.OpenHideItem(nameAdd,CategoryItem);
         WebUI.sendText(nameAdd, Name);
         WebUI.sendText(description, des);
@@ -46,7 +46,7 @@ public class CategoriesPage {
     private By nameNewCategory = By.xpath("//table[@id='categories-grid']/tbody/tr[1]/td[2]");
 
     public void CatgoryDisplay(String PriceF, String PriceT){
-        WebUI.Log("CATEGORY DISPLAY");
+        WebUI.LogConsole("CATEGORY DISPLAY");
         WebUI.moveToElemet(DisplayItem);
         WebUI.OpenHideItem(displayOrder,DisplayItem);
         WebUI.onoffSwich(MapItem,swich);
@@ -70,7 +70,7 @@ public class CategoriesPage {
     private By LimitStore = By.xpath("//div[@id='category-mappings']//div[@class='card-body']//div[3]//div[2]//div[1]//div[1]//div[1]//div[1]");
     private By inputLimiteStore = By.xpath("//div[@id='category-mappings']//div[@class='card-body']//div[3]//div[2]//div[1]//div[1]//div[1]//div[1]/input");
     public void Mapping(String CusValue, String StoreValue){
-        WebUI.Log("MAPPING");
+        WebUI.LogConsole("MAPPING");
         WebUI.moveToElemet(MapItem);
         WebUI.OpenHideItem(LimitCus,MapItem);
         WebUI.clickElement(LimitCus);
@@ -91,7 +91,7 @@ public class CategoriesPage {
     private By searchCat = By.xpath("//input[@id='SearchCategoryName']");
     private By searchButton = By.xpath("//button[@id='search-categories']");
     public void SEO(String search, String title, String key,String parentCat, String Name) {
-        WebUI.Log("SEO");
+        WebUI.LogConsole("SEO");
         WebUI.moveToElemet(SEOItem);
         WebUI.OpenHideItem(InputSearchEngine,SEOItem);
         WebUI.sendText(InputSearchEngine, search);
@@ -100,8 +100,8 @@ public class CategoriesPage {
         WebUI.moveToElemet(saveAddButton);
         WebUI.clickElement(saveAddButton);
         WebUI.sleep(1);
-        WebUI.Log("----------------------------------------------------------------------------------------------------------------------");
-        WebUI.Log("SEARCH NEW CATEGORY");
+        WebUI.LogConsole("----------------------------------------------------------------------------------------------------------------------");
+        WebUI.LogConsole("SEARCH NEW CATEGORY");
         WebUI.OpenHideItem(searchCat,SearchItem);
         WebUI.sendText(searchCat,Name);
         WebUI.clickElement(searchButton);
@@ -109,7 +109,7 @@ public class CategoriesPage {
         WebUI.moveToElemet(nameNewCategory);
         WebUI.sleep(1);
         WebUI.VerifyTextSoft(nameNewCategory, parentCat + " >> "+ Name);
-        WebUI.Log("----------------------------------------------------------------------------------------------------------------------");
+        WebUI.LogConsole("----------------------------------------------------------------------------------------------------------------------");
     }
 
 
@@ -121,7 +121,7 @@ public class CategoriesPage {
     private By saveEditButton = By.xpath("//button[@name='save']");
 
     public  void editCategory(String Name, String NameEdit, String desEdit, String parentCat){
-        WebUI.Log("EDIT CATEGORY");
+        WebUI.LogConsole("EDIT CATEGORY");
         WebUI.openURL("https://admin-demo.nopcommerce.com/Admin/Category/List");
         WebUI.OpenHideItem(searchCat,SearchItem);
         WebUI.sendText(searchCat,Name);
@@ -142,7 +142,7 @@ public class CategoriesPage {
         WebUI.moveToElemet(nameNewCategory);
         WebUI.sleep(1);
         WebUI.VerifyTextSoft(nameNewCategory, parentCat + " >> "+ NameEdit);
-        WebUI.Log("----------------------------------------------------------------------------------------------------------------------");
+        WebUI.LogConsole("----------------------------------------------------------------------------------------------------------------------");
     }
 
     //DELETE NEW
@@ -151,7 +151,7 @@ public class CategoriesPage {
     private By Checkbox = By.xpath("//div[@class='dataTables_scroll']/div[2]//tbody/tr[1]/td[1]/input");
     private By YesButton = By.xpath("//button[@id='delete-selected-action-confirmation-submit-button']");
     public void delCategory(String NameEdit ){
-        WebUI.Log("DELETE NEW CATEGORY");
+        WebUI.LogConsole("DELETE NEW CATEGORY");
         WebUI.openURL("https://admin-demo.nopcommerce.com/Admin/Category/List");
         WebUI.OpenHideItem(searchCat,SearchItem);
         WebUI.sendText(searchCat, NameEdit);

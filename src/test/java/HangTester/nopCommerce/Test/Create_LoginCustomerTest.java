@@ -1,12 +1,17 @@
-package HangTester.nopCommerce.RunTest;
+package HangTester.nopCommerce.Test;
 
 import HangTester.Helper.CaptureHelper;
-import HangTester.browsers.BaseTest;
+import HangTester.Helper.DataProviderManager;
+import HangTester.nopCommerce.common.BaseTest;
+import HangTester.nopCommerce.Listenner.TestListenner;
 import HangTester.nopCommerce.Page.Create_LoginCustomerFlow;
 import HangTester.nopCommerce.Page.LoginAdminPage;
+import HangTester.utils.logFile;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
+
 
 public class Create_LoginCustomerTest extends BaseTest {
     public Create_LoginCustomerFlow create_loginCustomerPage;
@@ -26,12 +31,12 @@ public class Create_LoginCustomerTest extends BaseTest {
         }
     }
 
-    @Test
-    public void createAcc(){
-        loginAdminPage.Login("admin@yourstore.com","admin");
-        loginAdminPage = create_loginCustomerPage.CreateACC("NamNguyen1833@gmail.com","Hello123#","Add a new customer back to customer list",
-                "Hang","Huynh","Administrators");
-        create_loginCustomerPage.LoginNewACC("NamNguyen1833@gmail.com", "Hello123#");
+    @Test(dataProvider = "data_provider_createCus_excel", dataProviderClass = DataProviderManager.class)
+    public void createAcc(String mail, String pass, String emailCus, String passCus, String pagename, String Fname, String Lname, String role, String failPass){
+        logFile.info("Create_LoginCustomerTest");
+        loginAdminPage.Login(mail,pass);
+        loginAdminPage = create_loginCustomerPage.CreateACC(emailCus,passCus,pagename, Fname, Lname,role);
+        create_loginCustomerPage.LoginNewACC(emailCus, failPass);
     }
 
 }

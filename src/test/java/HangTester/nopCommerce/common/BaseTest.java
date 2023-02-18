@@ -1,15 +1,16 @@
-package HangTester.browsers;
+package HangTester.nopCommerce.common;
 
+import HangTester.browsers.DriverManager;
+import HangTester.nopCommerce.Listenner.TestListenner;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Optional;
-import org.testng.annotations.Parameters;
+import org.testng.annotations.*;
+import org.testng.annotations.Listeners;
 
+@Listeners (TestListenner.class)
 public class BaseTest {
 
     @BeforeMethod

@@ -5,7 +5,7 @@
     <test name="ManufactureTest"  >
         <parameter name="browser" value="chrome"></parameter>
         <classes>
-            <class name="HangTester.nopCommerce.RunTest.ManufacturersTest" >
+            <class name="HangTester.nopCommerce.Test.ManufacturersTest" >
                 <methods>
                     <include name="addNew"/>
                     <include name="editNew"/>

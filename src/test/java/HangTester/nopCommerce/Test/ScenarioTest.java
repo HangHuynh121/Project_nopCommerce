@@ -1,11 +1,14 @@
-package HangTester.nopCommerce.RunTest;
+package HangTester.nopCommerce.Test;
 
 import HangTester.Helper.CaptureHelper;
-import HangTester.browsers.BaseTest;
+import HangTester.nopCommerce.common.BaseTest;
+import HangTester.nopCommerce.Listenner.TestListenner;
 import HangTester.nopCommerce.Page.*;
+import HangTester.utils.logFile;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 public class ScenarioTest extends BaseTest {
@@ -18,6 +21,7 @@ public class ScenarioTest extends BaseTest {
 
     @BeforeMethod
     public void ScenarioTest(){
+
         scenarioFlow = new ScenarioFlow();
         manufacturersPage = new ManufacturersPage();
         categoriesPage = new CategoriesPage();
@@ -35,6 +39,7 @@ public class ScenarioTest extends BaseTest {
 
     @Test
     public void scenarioTest() {
+        logFile.info("ScenarioTest");
         scenarioFlow = new ScenarioFlow();
         manufacturersPage = scenarioFlow.login();
         categoriesPage = scenarioFlow.manufacturers();

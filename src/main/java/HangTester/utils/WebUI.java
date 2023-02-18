@@ -6,6 +6,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
 import java.time.Duration;
@@ -16,7 +17,7 @@ public class WebUI {
         DriverManager.getDriver().get(url);
     }
 
-    public static void Log (String LogText){
+    public static void LogConsole(String LogText){
         System.out.println(LogText);
     }
 
@@ -24,7 +25,7 @@ public class WebUI {
         waitForElementVisible(by);
         sleep(step_time);
         DriverManager.getDriver().findElement(by).click();
-        Log("Click on: " + by);
+        LogConsole("Click on: " + by);
 
     }
 
@@ -33,28 +34,28 @@ public class WebUI {
         sleep(step_time);
         JavascriptExecutor js = (JavascriptExecutor) DriverManager.getDriver();
         js.executeScript("arguments[0].click();", DriverManager.getDriver().findElement(by));
-        Log("Click on: " + by);
+        LogConsole("Click on: " + by);
     }
 
     public static void ENTER(By by){
         Actions act = new Actions(DriverManager.getDriver());
         act.keyDown(Keys.ENTER).keyUp(Keys.ENTER).build().perform();
         sleep(step_time);
-        Log("Click ENTER: " + by );
+        LogConsole("Click ENTER: " + by );
     }
 
     public static void sendText( By by, String text){
         waitForElementVisible(by);
         sleep(step_time);
         DriverManager.getDriver().findElement(by).sendKeys(text);
-        Log("Input data: " + by);
+        LogConsole("Input data: " + by);
     }
 
     public static String getText( By by){
         waitForElementVisible(by);
         sleep(step_time);
         String text = DriverManager.getDriver().findElement(by).getText();
-        Log("Get text from: " + by + ", Text is: " + text);
+        LogConsole("Get text from: " + by + ", Text is: " + text);
         return text;
 
     }
@@ -105,7 +106,7 @@ public class WebUI {
         Boolean isSelect = element.isSelected();
         if(isSelect == false){element.click();}
         sleep(0.5);
-        Log("Check the checkbox: " + checkboxID);
+        LogConsole("Check the checkbox: " + checkboxID);
 
     }
 
@@ -113,7 +114,7 @@ public class WebUI {
         Select select = new Select(DriverManager.getDriver().findElement(By.id(ID)));
         select.selectByVisibleText(value);
         sleep(step_time);
-        Log("Select Dropdown: " + ID);
+        LogConsole("Select Dropdown: " + ID);
 
     }
 
@@ -123,7 +124,7 @@ public class WebUI {
         JavascriptExecutor js = (JavascriptExecutor) DriverManager.getDriver();
         js.executeScript("arguments[0].scrollIntoView(true);",element);
         sleep(step_time);
-        Log("Move to: " + by);
+        LogConsole("Move to: " + by);
 
     }
 
@@ -132,7 +133,7 @@ public class WebUI {
         act.keyDown(Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL).build().perform();
         act.keyDown(Keys.BACK_SPACE).keyUp(Keys.BACK_SPACE).build().perform();
         sleep(step_time);
-        Log("Clear text on: " + by );
+        LogConsole("Clear text on: " + by );
     }
 
     public static void VerifyTextSoft(  By by, String exp){
@@ -143,7 +144,7 @@ public class WebUI {
         String act = DriverManager.getDriver().findElement(by).getText();
         sa.assertEquals(act, exp);
         sa.assertAll();
-        Log("Verify text equal on: " + by);
+        LogConsole("Verify text equal on: " + by);
     }
 
 
@@ -155,7 +156,7 @@ public class WebUI {
         String act = DriverManager.getDriver().findElement(by).getText();
         sa.assertNotEquals(act, exp);
         sa.assertAll();
-        Log("Verify text not equal on: " + by);
+        LogConsole("Verify text not equal on: " + by);
     }
 
 
@@ -166,11 +167,16 @@ public class WebUI {
     }
 
     public static void waitForElementVisible( By by){
-        WebDriverWait wait = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(timeout));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(by));
+        try {
+            WebDriverWait wait = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(timeout));
+            wait.until(ExpectedConditions.visibilityOfElementLocated(by));
+        }catch (Throwable error){
+            logFile.info("Timeout waiting for the element Visible: " + by.toString());
+            Assert.fail("Timeout waiting for the element Visible: " + by.toString());
+        }
     }
 
-    private static double step_time = 0.3;
+    private static double step_time = 0.1;
     public static void sleep(double seconds){
         try{
             Thread.sleep((long) (1000 *seconds));

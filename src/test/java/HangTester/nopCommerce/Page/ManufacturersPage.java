@@ -23,7 +23,7 @@ public class ManufacturersPage {
         WebUI.openURL("https://admin-demo.nopcommerce.com/Admin/Manufacturer/List");
         WebUI.clickElement(AddButton);
         WebUI.VerifyTextSoft(nameAddPage, "Add a new manufacturer back to manufacturer list");
-        WebUI.Log("MANUFACTOR INFOR");
+        WebUI.LogConsole("MANUFACTOR INFOR");
         WebUI.OpenHideItem(nameAdd,manufactoItem);
         WebUI.sendText(nameAdd, Name);
         WebUI.sendText(description, des);
@@ -45,7 +45,7 @@ public class ManufacturersPage {
     private By searchManu = By.xpath("//input[@id='SearchManufacturerName']");
     private By searchButton = By.xpath("//button[@id='search-manufacturers']");
     public void ManufactorDisplay(String PriceF, String PriceT, String Name){
-        WebUI.Log("ADD NEW MANUFACTURE");
+        WebUI.LogConsole("ADD NEW MANUFACTURE");
         WebUI.moveToElemet(DisplayItem);
         WebUI.OpenHideItem(displayOrder,DisplayItem);
         WebUI.onoffSwich(MapItem,swich);
@@ -68,7 +68,7 @@ public class ManufacturersPage {
         WebUI.moveToElemet(nameNewManufacture);
         WebUI.sleep(1);
         WebUI.VerifyTextSoft(nameNewManufacture, Name);
-        WebUI.Log("----------------------------------------------------------------------------------------------------------------------");
+        WebUI.LogConsole("----------------------------------------------------------------------------------------------------------------------");
 
     }
 
@@ -80,7 +80,7 @@ public class ManufacturersPage {
     private By saveEditButton = By.xpath("//button[@name='save']");
 
     public void EditManufacture(String Name, String NameEdit, String desEdit) {
-        WebUI.Log("EDIT NEW MANUFACTURE");
+        WebUI.LogConsole("EDIT NEW MANUFACTURE");
         WebUI.openURL("https://admin-demo.nopcommerce.com/Admin/Manufacturer/List");
         WebUI.OpenHideItem(searchManu,searchItem);
         WebUI.sendText(searchManu,Name);
@@ -98,7 +98,7 @@ public class ManufacturersPage {
         WebUI.moveToElemet(nameNewManufacture);
         WebUI.sleep(1);
         WebUI.VerifyTextSoft(nameNewManufacture, NameEdit);
-        WebUI.Log("----------------------------------------------------------------------------------------------------------------------");
+        WebUI.LogConsole("----------------------------------------------------------------------------------------------------------------------");
     }
 
 
@@ -108,7 +108,7 @@ public class ManufacturersPage {
     private By YesButton = By.xpath("//button[@id='delete-selected-action-confirmation-submit-button']");
 
     public void DeleteManufacture(String NameEdit) {
-        WebUI.Log("DELETE NEW MANUFACTURE");
+        WebUI.LogConsole("DELETE NEW MANUFACTURE");
         WebUI.openURL("https://admin-demo.nopcommerce.com/Admin/Manufacturer/List");
         WebUI.OpenHideItem(searchManu,searchItem);
         WebUI.sendText(searchManu,NameEdit);

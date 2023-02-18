@@ -5,11 +5,19 @@ import org.testng.annotations.DataProvider;
 public class DataProviderManager {
 
     //LOGIN
-    @DataProvider(name = "data_provider_loginAdmin_excel", parallel = false)
-    public Object[][] dataLoginAdminFromExcel() {
+    @DataProvider(name = "data_provider_loginAdminPass_excel", parallel = false)
+    public Object[][] dataLoginAdminPassFromExcel() {
         ExcelHelper excelHelper = new ExcelHelper();
         Object[][] data;
-        data = excelHelper.getExcelData(ExcelHelper.getCurrentDir() + "src/test/resources/DataTest/Login.xlsx","login");
+        data = excelHelper.getExcelData(ExcelHelper.getCurrentDir() + "src/test/resources/DataTest/Login.xlsx","loginPass");
+        return data;
+    }
+
+    @DataProvider(name = "data_provider_loginAdminFailPW_excel", parallel = false)
+    public Object[][] dataLoginAdminFailPWFromExcel() {
+        ExcelHelper excelHelper = new ExcelHelper();
+        Object[][] data;
+        data = excelHelper.getExcelData(ExcelHelper.getCurrentDir() + "src/test/resources/DataTest/Login.xlsx","loginFailPW");
         return data;
     }
 
@@ -97,5 +105,12 @@ public class DataProviderManager {
             return data;
         }
 
+    //CREATE NEW CUSTOM
+    @DataProvider(name = "data_provider_createCus_excel", parallel = true)
+    public Object[][] dataVendorCreateCustomerExcel() {
+        ExcelHelper excelHelper = new ExcelHelper();
+        Object[][] data= excelHelper.getExcelData(ExcelHelper.getCurrentDir() + "src/test/resources/DataTest/CreateCus.xlsx","createACC");
+        return data;
+    }
 
 }

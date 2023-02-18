@@ -38,7 +38,7 @@ public class ScenarioFlow {
         manufacturersPage.ManufactorDisplay(excelHelper.getCellData("Price From",1), excelHelper.getCellData("Price To",1),
                 excelHelper.getCellData("Name",1));
 
-        WebUI.Log("----------------------------------------------------------------------------------------------------------------------");
+        WebUI.LogConsole("----------------------------------------------------------------------------------------------------------------------");
         WebUI.OpenHideItem(CategoryMenu,CatalogMenu);
         WebUI.clickElement(CategoryMenu);
         return new CategoriesPage();
@@ -57,7 +57,7 @@ public class ScenarioFlow {
         categoriesPage.SEO(excelHelper.getCellData("Search Product",1), excelHelper.getCellData("Title",1), excelHelper.getCellData("Key",1),
                 excelHelper.getCellData("Parent category",1), excelHelper.getCellData("Name",1));
 
-        WebUI.Log("----------------------------------------------------------------------------------------------------------------------");
+        WebUI.LogConsole("----------------------------------------------------------------------------------------------------------------------");
         WebUI.OpenHideItem(VendorMenu,CustomerMenu);
         WebUI.clickElement(VendorMenu);
         return new VendorsPage();
@@ -71,7 +71,7 @@ public class ScenarioFlow {
         vendorsPage.VendorInfo(excelHelper.getCellData("Name",1), excelHelper.getCellData("Mail",1));
         vendorsPage.VendorDisplay(excelHelper.getCellData("Price From",1), excelHelper.getCellData("Price To",1));
         vendorsPage.VendorSEO(excelHelper.getCellData("Name SEO",1), excelHelper.getCellData("Alert",1));
-        WebUI.Log("----------------------------------------------------------------------------------------------------------------------");
+        WebUI.LogConsole("----------------------------------------------------------------------------------------------------------------------");
         WebUI.OpenHideItem(ProductMenu,CatalogMenu);
         WebUI.clickElement(ProductMenu);
         return new ProductPage();
@@ -86,7 +86,7 @@ public class ScenarioFlow {
                 excelHelper.getCellData("Search Category",1), excelHelper.getCellData("Search Manufcture",1));
 
         productPage.ProductPrice(excelHelper.getCellData("Price",1), excelHelper.getCellData("Name",1), excelHelper.getCellData("Search Category",1));
-        WebUI.Log("----------------------------------------------------------------------------------------------------------------------");
+        WebUI.LogConsole("----------------------------------------------------------------------------------------------------------------------");
     }
 
 }
