@@ -1,6 +1,8 @@
 package HangTester.utils;
 
 import HangTester.browsers.DriverManager;
+import HangTester.reports.ExtentTestManager;
+import com.aventstack.extentreports.Status;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -15,6 +17,8 @@ public class WebUI {
 
     public static void openURL( String url){
         DriverManager.getDriver().get(url);
+        logFile.info("Open URL");
+        ExtentTestManager.logMessage(Status.PASS, "Open URL: " + url);
     }
 
     public static void LogConsole(String LogText){
@@ -25,7 +29,8 @@ public class WebUI {
         waitForElementVisible(by);
         sleep(step_time);
         DriverManager.getDriver().findElement(by).click();
-        LogConsole("Click on: " + by);
+        logFile.info("Click on: " + by);
+        ExtentTestManager.logMessage(Status.PASS,"Click on: " + by );
 
     }
 
@@ -34,28 +39,32 @@ public class WebUI {
         sleep(step_time);
         JavascriptExecutor js = (JavascriptExecutor) DriverManager.getDriver();
         js.executeScript("arguments[0].click();", DriverManager.getDriver().findElement(by));
-        LogConsole("Click on: " + by);
+        logFile.info("Click on: " + by);
+        ExtentTestManager.logMessage(Status.PASS, "Click on: " + by );
     }
 
     public static void ENTER(By by){
         Actions act = new Actions(DriverManager.getDriver());
         act.keyDown(Keys.ENTER).keyUp(Keys.ENTER).build().perform();
         sleep(step_time);
-        LogConsole("Click ENTER: " + by );
+        logFile.info("Click ENTER: " + by);
+        ExtentTestManager.logMessage(Status.PASS, "Click ENTER: " + by );
     }
 
     public static void sendText( By by, String text){
         waitForElementVisible(by);
         sleep(step_time);
         DriverManager.getDriver().findElement(by).sendKeys(text);
-        LogConsole("Input data: " + by);
+        logFile.info("Input data on: " + by);
+        ExtentTestManager.logMessage(Status.PASS, "Input data on: " + by );
     }
 
     public static String getText( By by){
         waitForElementVisible(by);
         sleep(step_time);
         String text = DriverManager.getDriver().findElement(by).getText();
-        LogConsole("Get text from: " + by + ", Text is: " + text);
+        logFile.info("Get text from: " + by + ", Text is: " + text);
+        ExtentTestManager.logMessage(Status.PASS, "Get text from: " + by + ", Text is: " + text);
         return text;
 
     }
@@ -67,10 +76,12 @@ public class WebUI {
             try {
                 DriverManager.getDriver().findElement(visible).click();
             } catch (WebDriverException e) {
-                System.out.println("Item:" + action+ " on");
+                logFile.info("Item:" + action+ " on");
+                ExtentTestManager.logMessage(Status.PASS, "Item:" + action+ " on");
             }
         } catch (TimeoutException e) {
-            System.out.println("Item: " + action+ " off");
+            logFile.info("Item:" + action+ " off");
+            ExtentTestManager.logMessage(Status.PASS, "Item:" + action+ " off");
             WebUI.moveToElemet(action);
             WebUI.clickElement(action);
         }
@@ -92,10 +103,12 @@ public class WebUI {
             try {
                 DriverManager.getDriver().findElement(visible).click();
             } catch (WebDriverException e) {
-                System.out.println("Advanced on");
+                logFile.info("Advanced on");
+                ExtentTestManager.logMessage(Status.PASS, "Advanced on");
             }
         } catch (TimeoutException e) {
-            System.out.println("Advanced off");
+            logFile.info("Advanced off");
+            ExtentTestManager.logMessage(Status.PASS, "Advanced off");
             WebUI.moveToElemet(action);
             WebUI.clickElement(action);
         }
@@ -106,7 +119,8 @@ public class WebUI {
         Boolean isSelect = element.isSelected();
         if(isSelect == false){element.click();}
         sleep(0.5);
-        LogConsole("Check the checkbox: " + checkboxID);
+        logFile.info("Check the checkbox: " + checkboxID);
+        ExtentTestManager.logMessage(Status.PASS, "Check the checkbox: " + checkboxID);
 
     }
 
@@ -114,7 +128,8 @@ public class WebUI {
         Select select = new Select(DriverManager.getDriver().findElement(By.id(ID)));
         select.selectByVisibleText(value);
         sleep(step_time);
-        LogConsole("Select Dropdown: " + ID);
+        logFile.info("Select Dropdown: " + ID);
+        ExtentTestManager.logMessage(Status.PASS, "Select Dropdown: " + ID);
 
     }
 
@@ -124,7 +139,8 @@ public class WebUI {
         JavascriptExecutor js = (JavascriptExecutor) DriverManager.getDriver();
         js.executeScript("arguments[0].scrollIntoView(true);",element);
         sleep(step_time);
-        LogConsole("Move to: " + by);
+        logFile.info("Move to: " + by);
+        ExtentTestManager.logMessage(Status.PASS, "Move to: " + by);
 
     }
 
@@ -133,7 +149,8 @@ public class WebUI {
         act.keyDown(Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL).build().perform();
         act.keyDown(Keys.BACK_SPACE).keyUp(Keys.BACK_SPACE).build().perform();
         sleep(step_time);
-        LogConsole("Clear text on: " + by );
+        logFile.info("Clear text on: " + by );
+        ExtentTestManager.logMessage(Status.PASS, "Clear text on: " + by );
     }
 
     public static void VerifyTextSoft(  By by, String exp){
@@ -144,7 +161,8 @@ public class WebUI {
         String act = DriverManager.getDriver().findElement(by).getText();
         sa.assertEquals(act, exp);
         sa.assertAll();
-        LogConsole("Verify text equal on: " + by);
+        logFile.info("Verify text equal on: " + by + " - Act: " + act + " - Exp: " + exp);
+        ExtentTestManager.logMessage(Status.PASS, "Verify text equal on: " + by + " - Act: " + act + " - Exp: " + exp );
     }
 
 
@@ -156,7 +174,8 @@ public class WebUI {
         String act = DriverManager.getDriver().findElement(by).getText();
         sa.assertNotEquals(act, exp);
         sa.assertAll();
-        LogConsole("Verify text not equal on: " + by);
+        logFile.info("Verify text not equal on: " + by + " - Act: " + act + " - Exp: " + exp);
+        ExtentTestManager.logMessage(Status.FAIL, "Verify text not equal on: " + by + " - Act: " + act + " - Exp: " + exp );
     }
 
 
@@ -173,6 +192,7 @@ public class WebUI {
         }catch (Throwable error){
             logFile.info("Timeout waiting for the element Visible: " + by.toString());
             Assert.fail("Timeout waiting for the element Visible: " + by.toString());
+            ExtentTestManager.logMessage(Status.FAIL, "Timeout waiting for the element Visible: " + by.toString());
         }
     }
 
