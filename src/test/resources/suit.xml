@@ -2,17 +2,15 @@
 
 <suite name="LoginAdmin" verbose="1" >
 
-    <listeners>
-        <listener class-name="HangTester.nopCommerce.Listenner.TestListenner"></listener>
-    </listeners>
 
     <test name="Login"  >
         <parameter name="browser" value="chrome"></parameter>
         <classes>
-            <class name="HangTester.nopCommerce.Test.LoginAdminTest" >
+            <class name="HangTester.nopCommerce.Test.ProductTest" >
                 <methods>
-                    <include name="LoginValid"/>
-                    <include name="LoginInvalidPW"/>
+                    <include name="addNew"/>
+                    <include name="editNew"/>
+                    <include name="delNew"/>
                 </methods>
             </class>
         </classes>

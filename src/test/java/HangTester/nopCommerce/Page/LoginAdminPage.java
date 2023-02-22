@@ -30,7 +30,7 @@ public class LoginAdminPage {
         WebUI.clearText(password);
         WebUI.sendText(password,pass);
         WebUI.clickElement(loginButton);
-        WebUI.VerifyTextSoft(nameAdminPageAct,nameAdminPageExp);
+        WebUI.VerifyTextHardEqual(nameAdminPageAct,nameAdminPageExp);
         WebUI.LogConsole("----------------------------------------------------------------------------------------------------------------------");
 
     }

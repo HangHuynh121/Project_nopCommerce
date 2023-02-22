@@ -29,14 +29,14 @@ public class TestListenner implements ITestListener {
     @Override
     public void onTestSuccess(ITestResult result) {
         logFile.info("Status of case " + result.getName() + " is pass.");
-        ExtentTestManager.logMessage(Status.PASS, result.getName());
+        ExtentTestManager.logMessage(Status.PASS,result.getName());
     }
 
     @Override
     public void onTestFailure(ITestResult result) {
         logFile.info("Status of case " + result.getName() + " is fail.");
         ExtentTestManager.addScreenShot(result.getName());
-        ExtentTestManager.logMessage(Status.PASS, result.getName());
+        ExtentTestManager.logMessage(Status.FAIL,result.getName());
     }
 
     @Override
