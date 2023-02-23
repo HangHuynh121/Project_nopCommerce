@@ -2,5 +2,8 @@
 .xml
 .png
 .log
-.json
+/allure-results
+/ExportData
+/ExtentReports
+/logs
 README.md

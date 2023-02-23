@@ -1,0 +1,18 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="<Manufacture>" verbose="1" >
+
+    <test name="ManufactureTest"  >
+        <parameter name="browser" value="chrome"></parameter>
+        <classes>
+            <class name="HangTester.nopCommerce.Test.ManufacturersTest" >
+                <methods>
+                    <include name="addNew"/>
+                    <include name="editNew"/>
+                    <include name="delNew"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+</suite>

@@ -1,0 +1,19 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="LoginAdmin" verbose="1" >
+
+
+    <test name="Login"  >
+        <parameter name="browser" value="chrome"></parameter>
+        <classes>
+            <class name="HangTester.nopCommerce.Test.ProductTest" >
+                <methods>
+                    <include name="addNew"/>
+                    <include name="editNew"/>
+                    <include name="delNew"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+</suite>
