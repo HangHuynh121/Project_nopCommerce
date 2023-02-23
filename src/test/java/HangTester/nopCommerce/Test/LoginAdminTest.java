@@ -15,31 +15,31 @@ public class LoginAdminTest extends BaseTest {
 
     public LoginAdminPage loginAdminPage;
     public CaptureHelper captureHelper;
-    Logger log =  LogManager.getLogger(LoginAdminPage.class);
+    Logger log = LogManager.getLogger(LoginAdminPage.class);
 
 
     @BeforeMethod
-    public void LoginAdminTest(){
-        loginAdminPage = new LoginAdminPage ();
+    public void LoginAdminTest() {
+        loginAdminPage = new LoginAdminPage();
         captureHelper = new CaptureHelper();
     }
 
     @AfterMethod
-    public void captureFail(ITestResult result){
-        if (result.getStatus() == ITestResult.FAILURE){
+    public void captureFail(ITestResult result) {
+        if (result.getStatus() == ITestResult.FAILURE) {
             captureHelper.captureScreenshot("LoginAdminTest", "adminPage");
         }
     }
 
-    @Test (dataProvider = "data_provider_loginAdminPass_excel", dataProviderClass = DataProviderManager.class)
-    public void LoginValid(String email, String pass){
+    @Test(dataProvider = "data_provider_loginAdminPass_excel", dataProviderClass = DataProviderManager.class)
+    public void LoginValid(String email, String pass) {
         log.info("LoginValid: " + email + " - " + pass);
-        loginAdminPage.Login(email, pass);
-           }
+        loginAdminPage.LoginPass(email, pass);
+    }
 
-    @Test (dataProvider = "data_provider_loginAdminFailPW_excel", dataProviderClass = DataProviderManager.class)
-    public void LoginInvalidPW(String email, String pass){
+    @Test(dataProvider = "data_provider_loginAdminFailPW_excel", dataProviderClass = DataProviderManager.class)
+    public void LoginInvalidPW(String email, String pass, String ErrorMsg) {
         log.info("LoginInvalidPW: " + email + " - " + pass);
-        loginAdminPage.Login(email, pass);
-            }
+        loginAdminPage.LoginFail(email, pass, ErrorMsg);
+    }
 }

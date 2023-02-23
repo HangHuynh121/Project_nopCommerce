@@ -16,17 +16,17 @@ public class CaptureHelper {
     //Tạo format ngày giờ để xíu gắn dô cái name của screenshot hoặc record video
     private SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH-mm-ss");
 
-    public void captureScreenshot( String screenName, String page){
+    public void captureScreenshot(String screenName, String page) {
         PropertiesFile.setPropertiesFile();
-            try {
+        try {
             Reporter.log("Driver for Screenshot: " + DriverManager.getDriver());
             // Tạo tham chiếu đối tượng của TakesScreenshot với dirver hiện tại
             TakesScreenshot ts = (TakesScreenshot) DriverManager.getDriver();
             // Gọi hàm getScreenshotAs để chuyển hóa hình ảnh về dạng FILE
             File source = ts.getScreenshotAs(OutputType.FILE);
             //Kiểm tra folder nếu không tồn tại thì tạo folder
-            File theDir = new File(projectPath + PropertiesFile.getPropValue( "KeyProp") + "\\" + PropertiesFile.getPropValue(page));
-            if (!theDir.exists()){
+            File theDir = new File(projectPath + PropertiesFile.getPropValue("KeyProp") + "\\" + PropertiesFile.getPropValue(page));
+            if (!theDir.exists()) {
                 theDir.mkdirs();
             }
             // Chổ này đặt tên thì truyền biến "screenName" gán cho tên File chụp màn hình

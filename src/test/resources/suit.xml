@@ -1,16 +1,15 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="LoginAdmin" verbose="1" >
+<suite name="LoginAdmin" verbose="1">
 
 
-    <test name="Login"  >
+    <test name="Login">
         <parameter name="browser" value="chrome"></parameter>
         <classes>
-            <class name="HangTester.nopCommerce.Test.ProductTest" >
+            <class name="HangTester.nopCommerce.Test.LoginAdminTest">
                 <methods>
-                    <include name="addNew"/>
-                    <include name="editNew"/>
-                    <include name="delNew"/>
+                    <include name="LoginValid"/>
+                    <include name="LoginInvalidPW"/>
                 </methods>
             </class>
         </classes>

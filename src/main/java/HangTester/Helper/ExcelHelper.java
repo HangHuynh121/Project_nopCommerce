@@ -44,7 +44,7 @@ public class ExcelHelper {
             this.excelFilePath = ExcelPath;
 
             //adding all the column header names to the map 'columns'
-            sh.getRow(0).forEach(cell ->{
+            sh.getRow(0).forEach(cell -> {
                 columns.put(cell.getStringCellValue(), cell.getColumnIndex());
             });
 
@@ -53,22 +53,19 @@ public class ExcelHelper {
         }
     }
 
-    public String getCellData(int rownum, int colnum){
-        try{
+    public String getCellData(int rownum, int colnum) {
+        try {
             cell = sh.getRow(rownum).getCell(colnum);
             String CellData = null;
-            switch (cell.getCellType()){
+            switch (cell.getCellType()) {
                 case STRING:
                     CellData = cell.getStringCellValue();
                     break;
                 case NUMERIC:
-                    if (DateUtil.isCellDateFormatted(cell))
-                    {
+                    if (DateUtil.isCellDateFormatted(cell)) {
                         CellData = String.valueOf(cell.getDateCellValue());
-                    }
-                    else
-                    {
-                        CellData = String.valueOf((long)cell.getNumericCellValue());
+                    } else {
+                        CellData = String.valueOf((long) cell.getNumericCellValue());
                     }
                     break;
                 case BOOLEAN:
@@ -79,19 +76,19 @@ public class ExcelHelper {
                     break;
             }
             return CellData;
-        }catch (Exception e){
-            return"";
+        } catch (Exception e) {
+            return "";
         }
     }
 
     //Gọi hàm
-    public String getCellData(String columnName,int rownum){
-        return getCellData(rownum,columns.get(columnName));
+    public String getCellData(String columnName, int rownum) {
+        return getCellData(rownum, columns.get(columnName));
     }
 
 
     //Lấy thư mục project trong ổ địa
-    public static String getCurrentDir(){
+    public static String getCurrentDir() {
         String current = System.getProperty("user.dir") + "/";
         return current;
     }
@@ -192,9 +189,9 @@ public class ExcelHelper {
             System.out.println("StartRow: " + startRow + " - EndRow: " + endRow);
 
             data = new Object[(endRow - startRow) + 1][1];
-            Hashtable< String, String > table = null;
+            Hashtable<String, String> table = null;
             for (int rowNums = startRow; rowNums <= endRow; rowNums++) {
-                table = new Hashtable < > ();
+                table = new Hashtable<>();
                 for (int colNum = 0; colNum < columns; colNum++) {
                     table.put(getCellData(0, colNum), getCellData(rowNums, colNum));
                 }

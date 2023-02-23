@@ -183,9 +183,8 @@ public class WebUI {
         sleep(step_time);
         String act = DriverManager.getDriver().findElement(by).getText();
         Assert.assertEquals(act, exp);
-        logFile.info("Verify text not equal on: " + by + " - Act: " + act + " - Exp: " + exp);
-        ExtentTestManager.logMessage(Status.PASS, "Verify text not equal on: " + by + " - Act: " + act + " - Exp: " + exp );
-
+        logFile.info("Verify text equal on: " + by + " - Act: " + act + " - Exp: " + exp);
+        ExtentTestManager.logMessage(Status.PASS, "Verify text equal on: " + by + " - Act: " + act + " - Exp: " + exp );
 
     }
 

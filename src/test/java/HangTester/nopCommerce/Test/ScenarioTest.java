@@ -20,7 +20,7 @@ public class ScenarioTest extends BaseTest {
     public CaptureHelper captureHelper;
 
     @BeforeMethod
-    public void ScenarioTest(){
+    public void ScenarioTest() {
 
         scenarioFlow = new ScenarioFlow();
         manufacturersPage = new ManufacturersPage();
@@ -31,8 +31,8 @@ public class ScenarioTest extends BaseTest {
     }
 
     @AfterMethod
-    public void captureFail(ITestResult result){
-        if (result.getStatus() == ITestResult.FAILURE){
+    public void captureFail(ITestResult result) {
+        if (result.getStatus() == ITestResult.FAILURE) {
             captureHelper.captureScreenshot("ScenarioTest", "scenarioFlow");
         }
     }

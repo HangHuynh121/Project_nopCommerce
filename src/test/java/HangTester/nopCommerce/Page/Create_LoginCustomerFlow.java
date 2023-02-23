@@ -73,7 +73,7 @@ public class Create_LoginCustomerFlow {
     //    LOGIN NEW ACC
     public void LoginNewACC(String emailCus, String passCus) {
         WebUI.LogConsole("Login by new Customer ACC");
-        loginAdminPage.Login(emailCus, passCus);
+        loginAdminPage.LoginPass(emailCus, passCus);
 
     }
 }

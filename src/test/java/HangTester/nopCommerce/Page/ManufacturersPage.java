@@ -1,17 +1,26 @@
 package HangTester.nopCommerce.Page;
 
+import HangTester.Helper.ExcelHelper;
 import org.openqa.selenium.By;
 import HangTester.utils.WebUI;
 
 public class ManufacturersPage {
 
-    public ManufacturersPage() {
+    public LoginAdminPage loginAdminPage;
 
+    public ManufacturersPage() {
+        loginAdminPage = new LoginAdminPage();
+    }
+
+    public void login() {
+        ExcelHelper excelHelper = new ExcelHelper();
+        excelHelper.setExcelFile("src/test/resources/DataTest/Login.xlsx", "loginPass");
+        loginAdminPage.LoginPass(excelHelper.getCellData("Email", 1), excelHelper.getCellData("Password", 1));
     }
 
     //ADD NEW
 
-        //ManufactorInfor
+    //ManufactorInfor
     private By searchItem = By.xpath("//div[@data-hideattribute='ManufacturersPage.HideSearchBlock']");
     private By AddButton = By.xpath("//a[normalize-space()='Add new']");
     private By nameAddPage = By.xpath("//h1[@class='float-left']");
@@ -24,12 +33,12 @@ public class ManufacturersPage {
         WebUI.clickElement(AddButton);
         WebUI.VerifyTextSoft(nameAddPage, "Add a new manufacturer back to manufacturer list");
         WebUI.LogConsole("MANUFACTOR INFOR");
-        WebUI.OpenHideItem(nameAdd,manufactoItem);
+        WebUI.OpenHideItem(nameAdd, manufactoItem);
         WebUI.sendText(nameAdd, Name);
         WebUI.sendText(description, des);
-         }
+    }
 
-        //Display Item
+    //Display Item
     public By swich = By.xpath("//div[@class='onoffswitch']");
     private By DisplayItem = By.xpath("//div[@id='manufacturer-display']//div[@class='card-header with-border clearfix']");
     private By MapItem = By.xpath("//div[@id='manufacturer-mappings']//div[@class='card-header with-border clearfix']");
@@ -44,26 +53,27 @@ public class ManufacturersPage {
     private By nameNewManufacture = By.xpath("//div[@class='dataTables_scroll']/div[2]//tbody/tr[1]/td[2]");
     private By searchManu = By.xpath("//input[@id='SearchManufacturerName']");
     private By searchButton = By.xpath("//button[@id='search-manufacturers']");
-    public void ManufactorDisplay(String PriceF, String PriceT, String Name){
+
+    public void ManufactorDisplay(String PriceF, String PriceT, String Name) {
         WebUI.LogConsole("ADD NEW MANUFACTURE");
         WebUI.moveToElemet(DisplayItem);
-        WebUI.OpenHideItem(displayOrder,DisplayItem);
-        WebUI.onoffSwich(MapItem,swich);
+        WebUI.OpenHideItem(displayOrder, DisplayItem);
+        WebUI.onoffSwich(MapItem, swich);
         WebUI.moveToElemet(DisplayItem);
         WebUI.checkCheckbox(PublicCheckbox);
         WebUI.checkCheckbox(ShowHomeCheckbox);
         WebUI.moveToElemet(PriceFrom);
         WebUI.clickElement(PriceFrom);
         WebUI.clearText(PriceFrom);
-        WebUI.sendText(InputPriceFrom,PriceF);
+        WebUI.sendText(InputPriceFrom, PriceF);
         WebUI.clickElement(PriceTo);
         WebUI.clearText(PriceTo);
         WebUI.sendText(InputPriceTo, PriceT);
         WebUI.moveToElemet(saveAddButton);
         WebUI.clickElement(saveAddButton);
         WebUI.sleep(1);
-        WebUI.OpenHideItem(searchManu,searchItem);
-        WebUI.sendText(searchManu,Name);
+        WebUI.OpenHideItem(searchManu, searchItem);
+        WebUI.sendText(searchManu, Name);
         WebUI.clearText(searchButton);
         WebUI.moveToElemet(nameNewManufacture);
         WebUI.sleep(1);
@@ -82,8 +92,8 @@ public class ManufacturersPage {
     public void EditManufacture(String Name, String NameEdit, String desEdit) {
         WebUI.LogConsole("EDIT NEW MANUFACTURE");
         WebUI.openURL("https://admin-demo.nopcommerce.com/Admin/Manufacturer/List");
-        WebUI.OpenHideItem(searchManu,searchItem);
-        WebUI.sendText(searchManu,Name);
+        WebUI.OpenHideItem(searchManu, searchItem);
+        WebUI.sendText(searchManu, Name);
         WebUI.clickElement(searchButton);
         WebUI.moveToElemet(nameNewManufacture); //Edit Manufacture vừa add
         WebUI.clickElement(EditButton);
@@ -110,8 +120,8 @@ public class ManufacturersPage {
     public void DeleteManufacture(String NameEdit) {
         WebUI.LogConsole("DELETE NEW MANUFACTURE");
         WebUI.openURL("https://admin-demo.nopcommerce.com/Admin/Manufacturer/List");
-        WebUI.OpenHideItem(searchManu,searchItem);
-        WebUI.sendText(searchManu,NameEdit);
+        WebUI.OpenHideItem(searchManu, searchItem);
+        WebUI.sendText(searchManu, NameEdit);
         WebUI.clickElement(searchButton);
         WebUI.clickElement(Checkbox);
         WebUI.sleep(1);
