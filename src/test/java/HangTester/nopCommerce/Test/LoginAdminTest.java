@@ -1,9 +1,9 @@
-package HangTester.nopCommerce.Test;
 
 import HangTester.Helper.CaptureHelper;
+import HangTester.Helper.DataProviderManager;
 import HangTester.nopCommerce.Page.LoginAdminPage;
 import HangTester.nopCommerce.common.BaseTest;
-import HangTester.Helper.DataProviderManager;
+import io.qameta.allure.Step;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.ITestResult;
@@ -35,6 +35,13 @@ public class LoginAdminTest extends BaseTest {
     public void LoginValid(String email, String pass) {
         log.info("LoginValid: " + email + " - " + pass);
         loginAdminPage.LoginPass(email, pass);
+
+    }
+
+    @Test(dataProvider = "data_provider_loginAdminFailEmail_excel", dataProviderClass = DataProviderManager.class)
+    public void LoginInvalidEmail(String email, String pass, String ErrorMsg) {
+        log.info("LoginInvalidPW: " + email + " - " + pass);
+        loginAdminPage.LoginFail(email, pass, ErrorMsg);
     }
 
     @Test(dataProvider = "data_provider_loginAdminFailPW_excel", dataProviderClass = DataProviderManager.class)

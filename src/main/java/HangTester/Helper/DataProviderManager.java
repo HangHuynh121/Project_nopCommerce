@@ -12,6 +12,13 @@ public class DataProviderManager {
         data = excelHelper.getExcelData(ExcelHelper.getCurrentDir() + "src/test/resources/DataTest/Login.xlsx", "loginPass");
         return data;
     }
+    @DataProvider(name = "data_provider_loginAdminFailEmail_excel", parallel = false)
+    public Object[][] dataLoginAdminFailEmailFromExcel() {
+        ExcelHelper excelHelper = new ExcelHelper();
+        Object[][] data;
+        data = excelHelper.getExcelData(ExcelHelper.getCurrentDir() + "src/test/resources/DataTest/Login.xlsx", "loginFailEmail");
+        return data;
+    }
 
     @DataProvider(name = "data_provider_loginAdminFailPW_excel", parallel = false)
     public Object[][] dataLoginAdminFailPWFromExcel() {
@@ -20,6 +27,8 @@ public class DataProviderManager {
         data = excelHelper.getExcelData(ExcelHelper.getCurrentDir() + "src/test/resources/DataTest/Login.xlsx", "loginFailPW");
         return data;
     }
+
+
 
     //CATEGORY
     //ADD

@@ -22,7 +22,7 @@ public class LoginAdminPage {
 
     public void LoginPass(String mail, String pass) {
         WebUI.LogConsole("LOGIN");
-        WebUI.openURL("https://admin-demo.nopcommerce.com/login?ReturnUrl=%2Fadmin%2F");
+        WebUI.openURL("https://admin-demo.nopcommerce.com/login");
         WebUI.sleep(1);
         WebUI.VerifyTextSoft(pageNameAct, pageNameExp);
         WebUI.clickElement(email);
@@ -39,7 +39,7 @@ public class LoginAdminPage {
 
     public void LoginFail(String mail, String pass, String expMSG) {
         WebUI.LogConsole("LOGIN");
-        WebUI.openURL("https://admin-demo.nopcommerce.com/login?ReturnUrl=%2Fadmin%2F");
+        WebUI.openURL("https://admin-demo.nopcommerce.com/login");
         WebUI.sleep(1);
         WebUI.VerifyTextSoft(pageNameAct, pageNameExp);
         WebUI.clickElement(email);

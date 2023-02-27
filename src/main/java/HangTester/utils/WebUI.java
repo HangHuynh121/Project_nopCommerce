@@ -3,6 +3,7 @@ package HangTester.utils;
 import HangTester.browsers.DriverManager;
 import HangTester.reports.ExtentTestManager;
 import com.aventstack.extentreports.Status;
+import io.qameta.allure.Step;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -15,6 +16,7 @@ import java.time.Duration;
 
 public class WebUI {
 
+    @Step ("Open URL: {0}")
     public static void openURL( String url){
         DriverManager.getDriver().get(url);
         logFile.info("Open URL");
@@ -25,6 +27,7 @@ public class WebUI {
         System.out.println(LogText);
     }
 
+    @Step("Click on: {0}")
     public static void clickElement( By by){
         waitForElementVisible(by);
         sleep(step_time);
@@ -33,7 +36,7 @@ public class WebUI {
         ExtentTestManager.logMessage(Status.PASS,"Click on: " + by );
 
     }
-
+    @Step("Click on: {0}")
     public static void clickJS(By by){
         waitForElementVisible(by);
         sleep(step_time);
@@ -43,6 +46,7 @@ public class WebUI {
         ExtentTestManager.logMessage(Status.PASS,"Click on: " + by );
     }
 
+    @Step("Click ENTER at {0}")
     public static void ENTER(By by){
         Actions act = new Actions(DriverManager.getDriver());
         act.keyDown(Keys.ENTER).keyUp(Keys.ENTER).build().perform();
@@ -51,6 +55,7 @@ public class WebUI {
         ExtentTestManager.logMessage(Status.PASS,"Click ENTER: " + by );
     }
 
+    @Step ("Input {1} on {0}")
     public static void sendText( By by, String text){
         waitForElementVisible(by);
         sleep(step_time);
@@ -59,6 +64,7 @@ public class WebUI {
         ExtentTestManager.logMessage(Status.PASS,"Input data on: " + by );
     }
 
+    @Step ("Get text from {0}")
     public static String getText( By by){
         waitForElementVisible(by);
         sleep(step_time);
@@ -69,6 +75,7 @@ public class WebUI {
 
     }
 
+    @Step("Open item at {0} if it's hided, else no action")
     public static void OpenHideItem(By visible, By action){
         try {
             WebDriverWait wait = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(1));
@@ -87,6 +94,7 @@ public class WebUI {
         }
     }
 
+    @Step("Wait until {0} visible")
     public static Boolean visibleElement(By element) {
         try {
             DriverManager.getDriver().findElement(element).click();
@@ -96,6 +104,7 @@ public class WebUI {
         }
     }
 
+    @Step("Click {0} if it turn on, else no action ")
     public static void onoffSwich(By visible, By action){
         try {
             WebDriverWait wait = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(1));
@@ -114,6 +123,7 @@ public class WebUI {
         }
     }
 
+    @Step ("Check on {0} checkbox")
     public static void checkCheckbox(String checkboxID){
         WebElement element = DriverManager.getDriver().findElement(By.id(checkboxID));
         Boolean isSelect = element.isSelected();
@@ -124,6 +134,7 @@ public class WebUI {
 
     }
 
+    @Step ("Select {1} at {0} dropdown")
     public static  void selectDopdown(String ID, String value){
         Select select = new Select(DriverManager.getDriver().findElement(By.id(ID)));
         select.selectByVisibleText(value);
@@ -133,6 +144,7 @@ public class WebUI {
 
     }
 
+    @Step ("Move to {0}")
     public static  void moveToElemet(By by){
         waitForElementVisible(by);
         WebElement element = DriverManager.getDriver().findElement(by);
@@ -143,7 +155,7 @@ public class WebUI {
         ExtentTestManager.logMessage(Status.PASS,"Move to: " + by);
 
     }
-
+     @Step ("Clear text om {0}")
     public static void clearText(By by){
         Actions act = new Actions(DriverManager.getDriver());
         act.keyDown(Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL).build().perform();
@@ -153,6 +165,7 @@ public class WebUI {
         ExtentTestManager.logMessage(Status.PASS,"Clear text on: " + by );
     }
 
+    @Step ("Verify Actual Text equal Expevted Text {1} at {0} ")
     public static void VerifyTextSoft(  By by, String exp){
         SoftAssert sa = new SoftAssert();
         waitForElementVisible(by);
@@ -164,7 +177,7 @@ public class WebUI {
         ExtentTestManager.logMessage(Status.PASS,"Verify text equal on: " + by + " - Act: " + act + " - Exp: " + exp );
     }
 
-
+    @Step ("Verify Actual Text not equal Expevted Text {1} at {0} ")
     public static void VerifyTextSoftNotEqual(  By by, String exp){
         waitForElementVisible(by);
         SoftAssert sa = new SoftAssert();
@@ -176,7 +189,7 @@ public class WebUI {
         logFile.info("Verify text not equal on: " + by + " - Act: " + act + " - Exp: " + exp);
         ExtentTestManager.logMessage(Status.FAIL,"Verify text not equal on: " + by + " - Act: " + act + " - Exp: " + exp );
     }
-
+    @Step ("Verify Actual Text equal Expevted Text {1} at {0} ")
     public static  void VerifyTextHardEqual(By by, String exp){
         SoftAssert sa = new SoftAssert();
         waitForElementVisible(by);
@@ -195,6 +208,7 @@ public class WebUI {
         wait.until(ExpectedConditions.elementToBeClickable(by));
     }
 
+    @Step("Timeout waiting for {0} visible")
     public static void waitForElementVisible( By by){
         try {
             WebDriverWait wait = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(timeout));

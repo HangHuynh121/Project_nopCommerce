@@ -1,7 +1,7 @@
 package HangTester.nopCommerce.common;
 
 import HangTester.browsers.DriverManager;
-import HangTester.nopCommerce.Listenner.TestListenner;
+import HangTester.nopCommerce.Listenner.TestListener;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -10,7 +10,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.*;
 import org.testng.annotations.Listeners;
 
-@Listeners(TestListenner.class)
+@Listeners(TestListener.class)
 public class BaseTest {
 
     @BeforeMethod

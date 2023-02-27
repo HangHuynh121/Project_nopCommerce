@@ -1,11 +1,9 @@
 package HangTester.nopCommerce.Test;
 
 import HangTester.Helper.CaptureHelper;
-import HangTester.nopCommerce.Page.LoginAdminPage;
 import HangTester.nopCommerce.Page.ManufacturersPage;
 import HangTester.nopCommerce.common.BaseTest;
 import HangTester.Helper.DataProviderManager;
-import HangTester.Helper.ExcelHelper;
 import HangTester.utils.logFile;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
@@ -13,7 +11,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 
-public class ManufacturersTest extends BaseTest {
+public class ManufacturesTest extends BaseTest {
 
     public ManufacturersPage manufacturersPage;
     public CaptureHelper captureHelper;

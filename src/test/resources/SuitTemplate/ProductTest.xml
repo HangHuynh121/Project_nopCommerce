@@ -1,0 +1,32 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="ProductTest" verbose="1" parallel="tests">
+
+    <test name="ProductTest_chrome">
+        <parameter name="browser" value="chrome"></parameter>
+        <classes>
+            <class name="HangTester.nopCommerce.Test.ProductTest">
+                <methods>
+                    <include name="addNew"/>
+                    <include name="editNew"/>
+                    <include name="delNew"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="ProductTest_edge">
+        <parameter name="browser" value="edge"></parameter>
+        <classes>
+            <class name="HangTester.nopCommerce.Test.ProductTest">
+                <methods>
+                    <include name="addNew"/>
+                    <include name="editNew"/>
+                    <include name="delNew"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+</suite>
+

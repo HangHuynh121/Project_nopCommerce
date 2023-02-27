@@ -82,7 +82,7 @@ public class ManufacturersPage {
 
     }
 
-    //EDIT NEW Manufacture
+    //EDIT NEW ManufacturesTest.xml
     private By EditButton = By.xpath("//div[@class='dataTables_scroll']/div[2]//tbody/tr[1]/td[5]/a"); //edit new at 1st record
     private By nameEditPage = By.xpath("//h1[@class='float-left']");
     private By nameEdit = By.xpath("//input[@id='Name']");
@@ -95,7 +95,7 @@ public class ManufacturersPage {
         WebUI.OpenHideItem(searchManu, searchItem);
         WebUI.sendText(searchManu, Name);
         WebUI.clickElement(searchButton);
-        WebUI.moveToElemet(nameNewManufacture); //Edit Manufacture vừa add
+        WebUI.moveToElemet(nameNewManufacture); //Edit ManufacturesTest.xml vừa add
         WebUI.clickElement(EditButton);
         WebUI.VerifyTextSoft(nameEditPage, "Edit manufacturer details - " + Name + " back to manufacturer list");
         WebUI.clickElement(nameEdit);

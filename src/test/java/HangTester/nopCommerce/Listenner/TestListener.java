@@ -1,14 +1,38 @@
 package HangTester.nopCommerce.Listenner;
 
+import HangTester.browsers.DriverManager;
 import HangTester.reports.ExtentReportManager;
 import HangTester.reports.ExtentTestManager;
 import HangTester.utils.logFile;
 import com.aventstack.extentreports.Status;
+import io.qameta.allure.Attachment;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
-public class TestListenner implements ITestListener {
+public class TestListener implements ITestListener {
+
+    //Text attachments for Allure
+    @Attachment(value = "{0}", type = "text/plain")
+    public static String saveTextLog(String message) {
+        return message;
+    }
+
+    //HTML attachments for Allure
+    @Attachment(value = "{0}", type = "text/html")
+    public static String attachHtml(String html) {
+        return html;
+    }
+
+    //Text attachments for Allure
+    @Attachment(value = "Page screenshot", type = "image/png")
+    public byte[] saveScreenshotPNG() {
+        return ((TakesScreenshot) DriverManager.getDriver()).getScreenshotAs(OutputType.BYTES);
+    }
+
+    //Extent Report
 
     @Override
     public void onStart(ITestContext result) {
@@ -36,8 +60,14 @@ public class TestListenner implements ITestListener {
     @Override
     public void onTestFailure(ITestResult result) {
         logFile.info("Status of case " + result.getName() + " is fail.");
+
+        //Extent Report
         ExtentTestManager.addScreenShot(result.getName());
         ExtentTestManager.logMessage(Status.FAIL, result.getName());
+
+        //Allure Report
+        saveTextLog(result.getName());
+        saveScreenshotPNG();
     }
 
     @Override
@@ -48,6 +78,7 @@ public class TestListenner implements ITestListener {
     public void onTestStart(ITestResult result) {
         ExtentTestManager.saveToReport(result.getName(), "");
     }
+
 
 }
 
