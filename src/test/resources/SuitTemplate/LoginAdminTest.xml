@@ -14,7 +14,7 @@
         </classes>
     </test>
 
-    <!--test name="Login_Firefox"  parallel="methods">
+    <test name="Login_Firefox"  parallel="methods">
         <parameter name="browser" value="firefox"></parameter>
         <classes>
             <class name="LoginAdminTest">
@@ -38,6 +38,6 @@
                 </methods>
             </class>
         </classes>
-    </test-->
+    </test>
 
 </suite>

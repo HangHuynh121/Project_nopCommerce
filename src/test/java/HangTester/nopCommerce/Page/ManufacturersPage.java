@@ -3,6 +3,7 @@ package HangTester.nopCommerce.Page;
 import HangTester.Helper.ExcelHelper;
 import org.openqa.selenium.By;
 import HangTester.utils.WebUI;
+import org.testng.asserts.SoftAssert;
 
 public class ManufacturersPage {
 
@@ -29,6 +30,7 @@ public class ManufacturersPage {
     private By description = By.xpath("//iframe[@id='Description_ifr']");
 
     public void ManufactorItem(String Name, String des) {
+        SoftAssert sa = new SoftAssert();
         WebUI.openURL("https://admin-demo.nopcommerce.com/Admin/Manufacturer/List");
         WebUI.clickElement(AddButton);
         WebUI.VerifyTextSoft(nameAddPage, "Add a new manufacturer back to manufacturer list");
@@ -36,6 +38,7 @@ public class ManufacturersPage {
         WebUI.OpenHideItem(nameAdd, manufactoItem);
         WebUI.sendText(nameAdd, Name);
         WebUI.sendText(description, des);
+        sa.assertAll();
     }
 
     //Display Item
@@ -55,6 +58,7 @@ public class ManufacturersPage {
     private By searchButton = By.xpath("//button[@id='search-manufacturers']");
 
     public void ManufactorDisplay(String PriceF, String PriceT, String Name) {
+        SoftAssert sa = new SoftAssert();
         WebUI.LogConsole("ADD NEW MANUFACTURE");
         WebUI.moveToElemet(DisplayItem);
         WebUI.OpenHideItem(displayOrder, DisplayItem);
@@ -79,6 +83,7 @@ public class ManufacturersPage {
         WebUI.sleep(1);
         WebUI.VerifyTextSoft(nameNewManufacture, Name);
         WebUI.LogConsole("----------------------------------------------------------------------------------------------------------------------");
+        sa.assertAll();
 
     }
 
@@ -90,6 +95,7 @@ public class ManufacturersPage {
     private By saveEditButton = By.xpath("//button[@name='save']");
 
     public void EditManufacture(String Name, String NameEdit, String desEdit) {
+        SoftAssert sa = new SoftAssert();
         WebUI.LogConsole("EDIT NEW MANUFACTURE");
         WebUI.openURL("https://admin-demo.nopcommerce.com/Admin/Manufacturer/List");
         WebUI.OpenHideItem(searchManu, searchItem);
@@ -109,6 +115,7 @@ public class ManufacturersPage {
         WebUI.sleep(1);
         WebUI.VerifyTextSoft(nameNewManufacture, NameEdit);
         WebUI.LogConsole("----------------------------------------------------------------------------------------------------------------------");
+        sa.assertAll();
     }
 
 
@@ -129,6 +136,7 @@ public class ManufacturersPage {
         WebUI.sleep(1);
         WebUI.clickElement(Delete);
         WebUI.clickElement(YesButton);
+
     }
 
 }

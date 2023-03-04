@@ -1,8 +1,13 @@
 package HangTester.nopCommerce.Page;
 
 import HangTester.Helper.ExcelHelper;
+import HangTester.browsers.DriverManager;
+import HangTester.reports.ExtentTestManager;
 import HangTester.utils.WebUI;
+import HangTester.utils.logFile;
+import com.aventstack.extentreports.Status;
 import org.openqa.selenium.*;
+import org.testng.asserts.SoftAssert;
 
 public class VendorsPage {
     public LoginAdminPage loginAdminPage;
@@ -78,6 +83,7 @@ public class VendorsPage {
     private By searchButton = By.xpath("//button[@id='search-vendors']");
 
     public void VendorSEO(String name, String Alert) {
+        SoftAssert sa = new SoftAssert();
         WebUI.moveToElemet(SEOItem);
         WebUI.OpenHideItem(SeName, SEOItem);
         WebUI.sendText(SeName, name);
@@ -87,6 +93,7 @@ public class VendorsPage {
         WebUI.VerifyTextSoft(alert, Alert);
         WebUI.sendText(searchVendor, name);
         WebUI.clickElement(searchButton);
+        sa.assertAll();
     }
 
 }

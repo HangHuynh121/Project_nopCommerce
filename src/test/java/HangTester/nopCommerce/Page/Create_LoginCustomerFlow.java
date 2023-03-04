@@ -2,6 +2,7 @@ package HangTester.nopCommerce.Page;
 
 import HangTester.utils.WebUI;
 import org.openqa.selenium.By;
+import org.testng.asserts.SoftAssert;
 
 public class Create_LoginCustomerFlow {
     public LoginAdminPage loginAdminPage;
@@ -32,6 +33,7 @@ public class Create_LoginCustomerFlow {
     private By LogOutButton = By.xpath("//a[normalize-space()='Logout']");
 
     public LoginAdminPage CreateACC(String emailCus, String passCus, String pagename, String FName, String LName, String role) {
+        SoftAssert sa =new SoftAssert();
         WebUI.LogConsole("CREATE NEW ACC");
         WebUI.openURL("https://admin-demo.nopcommerce.com/Admin/Customer/List");
         WebUI.OpenHideItem(CustomerChildMenu, CustomerParentMenu);
@@ -65,6 +67,7 @@ public class Create_LoginCustomerFlow {
         WebUI.sleep(1);
         WebUI.clickElement(LogOutButton);
         WebUI.LogConsole("----------------------------------------------------------------------------------------------------------------------");
+        sa.assertAll();
         return new LoginAdminPage();
 
     }

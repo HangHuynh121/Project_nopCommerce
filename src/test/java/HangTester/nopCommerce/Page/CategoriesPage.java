@@ -3,6 +3,7 @@ package HangTester.nopCommerce.Page;
 import HangTester.Helper.ExcelHelper;
 import org.openqa.selenium.By;
 import HangTester.utils.WebUI;
+import org.testng.asserts.SoftAssert;
 
 public class CategoriesPage {
     public LoginAdminPage loginAdminPage;
@@ -102,6 +103,7 @@ public class CategoriesPage {
     private By searchButton = By.xpath("//button[@id='search-categories']");
 
     public void SEO(String search, String title, String key, String parentCat, String Name) {
+        SoftAssert sa = new SoftAssert();
         WebUI.LogConsole("SEO");
         WebUI.moveToElemet(SEOItem);
         WebUI.OpenHideItem(InputSearchEngine, SEOItem);
@@ -121,6 +123,7 @@ public class CategoriesPage {
         WebUI.sleep(1);
         WebUI.VerifyTextSoft(nameNewCategory, parentCat + " >> " + Name);
         WebUI.LogConsole("----------------------------------------------------------------------------------------------------------------------");
+        sa.assertAll();
     }
 
 
@@ -132,12 +135,14 @@ public class CategoriesPage {
     private By saveEditButton = By.xpath("//button[@name='save']");
 
     public void editCategory(String Name, String NameEdit, String desEdit, String parentCat) {
+        SoftAssert sa = new SoftAssert();
         WebUI.LogConsole("EDIT CATEGORY");
         WebUI.openURL("https://admin-demo.nopcommerce.com/Admin/Category/List");
         WebUI.OpenHideItem(searchCat, SearchItem);
         WebUI.sendText(searchCat, Name);
         WebUI.clickElement(searchButton);
         WebUI.moveToElemet(EditButton);
+        WebUI.sleep(1);
         WebUI.clickElement(EditButton);
         WebUI.sleep(1);
         WebUI.VerifyTextSoft(nameEditPage, "Edit category details - " + Name + " back to category list");
@@ -154,6 +159,7 @@ public class CategoriesPage {
         WebUI.sleep(1);
         WebUI.VerifyTextSoft(nameNewCategory, parentCat + " >> " + NameEdit);
         WebUI.LogConsole("----------------------------------------------------------------------------------------------------------------------");
+        sa.assertAll();
     }
 
     //DELETE NEW
@@ -168,6 +174,7 @@ public class CategoriesPage {
         WebUI.OpenHideItem(searchCat, SearchItem);
         WebUI.sendText(searchCat, NameEdit);
         WebUI.clickElement(searchButton);
+        WebUI.sleep(1);
         WebUI.moveToElemet(nameNewCategory); //DeleteManufacture vừa add
         WebUI.clickElement(Checkbox);
         WebUI.sleep(1);

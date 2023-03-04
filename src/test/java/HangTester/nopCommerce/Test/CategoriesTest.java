@@ -43,7 +43,6 @@ public class CategoriesTest extends BaseTest {
     public void editNew(String name, String newName, String newDes, String parentCat) {
         logFile.info("CategoriesTest");
         categoriesPage.login();
-        categoriesPage.login();
         categoriesPage.editCategory(name, newName, newDes, parentCat);
 
     }
@@ -51,7 +50,6 @@ public class CategoriesTest extends BaseTest {
     @Test(priority = 3, dataProvider = "data_provider_categoryDel_excel", dataProviderClass = DataProviderManager.class)
     public void delNew(String search) {
         logFile.info("CategoriesTest");
-        categoriesPage.login();
         categoriesPage.login();
         categoriesPage.delCategory(search);
     }

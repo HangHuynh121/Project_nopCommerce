@@ -22,6 +22,7 @@ public class ProductTest extends BaseTest {
         productPage = new ProductPage();
         captureHelper = new CaptureHelper();
 
+
     }
 
     @AfterMethod

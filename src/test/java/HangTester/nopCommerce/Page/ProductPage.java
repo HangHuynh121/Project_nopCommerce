@@ -3,6 +3,7 @@ package HangTester.nopCommerce.Page;
 import HangTester.Helper.ExcelHelper;
 import HangTester.utils.WebUI;
 import org.openqa.selenium.By;
+import org.testng.asserts.SoftAssert;
 
 public class ProductPage {
 
@@ -64,15 +65,17 @@ public class ProductPage {
     private By searchPro = By.xpath("//input[@id='SearchProductName']");
     private String searchCateID = "SearchCategoryId";
     private By searchButton = By.xpath("//button[@id='search-products']");
-    private By newProduct = By.xpath("//tbody//tr//td[3]");
+    private By newProduct = By.xpath("//tbody//tr[1]//td[3]");
 
     public void ProductPrice(String price, String search, String search1) {
+        SoftAssert sa = new SoftAssert();
         WebUI.LogConsole("PRODUCT PRICE");
         WebUI.moveToElemet(priceItem);
         WebUI.OpenHideItem(Price, priceItem);
-        WebUI.clickElement(Price);
-        WebUI.clearText(Price);
+        WebUI.clickElement(inputPrice);
+        WebUI.clearText(inputPrice);
         WebUI.sendText(inputPrice, price);
+        WebUI.sleep(1);
         WebUI.moveToElemet(saveButton);
         WebUI.clickElement(saveButton);
         WebUI.sleep(1);
@@ -85,6 +88,7 @@ public class ProductPage {
         WebUI.moveToElemet(newProduct);
         WebUI.VerifyTextSoft(newProduct, search);
         WebUI.LogConsole("----------------------------------------------------------------------------------------------------------------------");
+        sa.assertAll();
     }
 
     //EDIT NEW
@@ -95,7 +99,7 @@ public class ProductPage {
     private By saveEditButton = By.xpath("//button[@name='save']");
 
     public void editProduct(String Name, String searchCate, String NameEdit, String desEdit) {
-
+        SoftAssert sa = new SoftAssert();
         WebUI.openURL("https://admin-demo.nopcommerce.com/Admin/Product/List");
         WebUI.LogConsole("SEARCH PRODUCT");
         WebUI.OpenHideItem(searchPro, SearchItem);
@@ -103,6 +107,7 @@ public class ProductPage {
         WebUI.selectDopdown(searchCateID, searchCate);
         WebUI.clickElement(searchButton);
         WebUI.moveToElemet(EditButton);
+        WebUI.sleep(1);
         WebUI.clickElement(EditButton);
         WebUI.sleep(1);
         WebUI.VerifyTextSoft(nameEditPro, "Edit product details - " + Name + " back to product list");
@@ -123,6 +128,7 @@ public class ProductPage {
         WebUI.sleep(1);
         WebUI.VerifyTextSoft(newProduct, NameEdit);
         WebUI.LogConsole("----------------------------------------------------------------------------------------------------------------------");
+        sa.assertAll();
     }
 
     //DELETE NEW
@@ -139,6 +145,7 @@ public class ProductPage {
         WebUI.selectDopdown(searchCateID, searchCate);
         WebUI.clickElement(searchButton);
         WebUI.moveToElemet(newProduct); //DeleteProduct vừa add
+        WebUI.sleep(1);
         WebUI.clickElement(Checkbox);
         WebUI.sleep(1);
         WebUI.moveToElemet(Delete);

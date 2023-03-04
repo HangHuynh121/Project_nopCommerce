@@ -142,6 +142,12 @@
                         <suiteXmlFiles>
                             <!-- Call Suite name -->
                             <suiteXmlFile>src/test/resources/SuitTemplate/LoginAdminTest.xml</suiteXmlFile>
+                            <suiteXmlFile>src/test/resources/SuitTemplate/ManufacturesTest.xml</suiteXmlFile>
+                            <suiteXmlFile>src/test/resources/SuitTemplate/CategoriesTest.xml</suiteXmlFile>
+                            <suiteXmlFile>src/test/resources/SuitTemplate/VendorsTest.xml</suiteXmlFile>
+                            <suiteXmlFile>src/test/resources/SuitTemplate/ProductTest.xml</suiteXmlFile>
+                            <suiteXmlFile>src/test/resources/SuitTemplate/ScenarioTest.xml</suiteXmlFile>
+                            <suiteXmlFile>src/test/resources/SuitTemplate/Create_LoginCustomer.xml</suiteXmlFile>
                         </suiteXmlFiles>
                         <argLine>
                             -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/1.9.9.1/aspectjweaver-1.9.9.1.jar"

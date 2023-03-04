@@ -172,12 +172,12 @@ public class WebUI {
         sleep(step_time);
         String act = DriverManager.getDriver().findElement(by).getText();
         sa.assertEquals(act, exp);
-        sa.assertAll();
         logFile.info("Verify text equal on: " + by + " - Act: " + act + " - Exp: " + exp);
         ExtentTestManager.logMessage(Status.PASS,"Verify text equal on: " + by + " - Act: " + act + " - Exp: " + exp );
+
     }
 
-    @Step ("Verify Actual Text not equal Expevted Text {1} at {0} ")
+    @Step ("Verify Actual Text not equal Expected Text {1} at {0} ")
     public static void VerifyTextSoftNotEqual(  By by, String exp){
         waitForElementVisible(by);
         SoftAssert sa = new SoftAssert();
@@ -185,13 +185,11 @@ public class WebUI {
         sleep(step_time);
         String act = DriverManager.getDriver().findElement(by).getText();
         sa.assertNotEquals(act, exp);
-        sa.assertAll();
         logFile.info("Verify text not equal on: " + by + " - Act: " + act + " - Exp: " + exp);
         ExtentTestManager.logMessage(Status.FAIL,"Verify text not equal on: " + by + " - Act: " + act + " - Exp: " + exp );
     }
-    @Step ("Verify Actual Text equal Expevted Text {1} at {0} ")
+    @Step ("Verify Actual Text equal Expected Text {1} at {0} ")
     public static  void VerifyTextHardEqual(By by, String exp){
-        SoftAssert sa = new SoftAssert();
         waitForElementVisible(by);
         sleep(step_time);
         String act = DriverManager.getDriver().findElement(by).getText();
@@ -220,7 +218,7 @@ public class WebUI {
         }
     }
 
-    private static double step_time = 0.1;
+    private static double step_time = 0.5;
     public static void sleep(double seconds){
         try{
             Thread.sleep((long) (1000 *seconds));
