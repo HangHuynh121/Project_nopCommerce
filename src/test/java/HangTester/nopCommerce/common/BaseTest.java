@@ -5,7 +5,9 @@ import HangTester.nopCommerce.Listenner.TestListener;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.*;
 import org.testng.annotations.Listeners;
@@ -17,6 +19,8 @@ public class BaseTest {
     @Parameters({"browser"})
     public void createDriver(@Optional("chrome") String browserName){
         WebDriver driver = setupBrowser(browserName);
+        ChromeOptions option = new ChromeOptions();
+        option.addArguments("--remote-allow-origins=*");
         DriverManager.setDriver(driver);
     }
 
@@ -43,7 +47,9 @@ public class BaseTest {
         WebDriver driver;
         System.out.println("Launching Chrome browser...");
         WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
+        ChromeOptions option = new ChromeOptions();
+        option.addArguments("--remote-allow-origins=*");
+        driver = new ChromeDriver(option);
         driver.manage().window().maximize();
         return driver;
     }
@@ -52,7 +58,9 @@ public class BaseTest {
         WebDriver driver;
         System.out.println("Launching Edge browser...");
         WebDriverManager.edgedriver().setup();
-        driver = new EdgeDriver();
+        EdgeOptions option = new EdgeOptions();
+        option.addArguments("--remote-allow-origins=*");
+        driver = new EdgeDriver(option);
         driver.manage().window().maximize();
         return driver;
     }
